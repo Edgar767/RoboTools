@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Carrusel from '../Components/Carrusel';
 import image1 from '../img/carusel-1.jpeg';
 import image2 from '../img/carusel-2.jpeg';
@@ -12,6 +12,7 @@ import InicioCards from '../Components/InicioCards';
 import image11 from "../img/InfiniteCards/image11.jpeg";
 import image22 from "../img/InfiniteCards/image22.jpeg";
 import image33 from "../img/InfiniteCards/image33.jpeg";
+import InfiniteCarrusel from '../Components/InifinteCarrusel';
 
 const InicioCardsData = [
   {
@@ -163,6 +164,7 @@ const Inicio = () => {
           </div>
         </div>
       </div>
+      <InfiniteCarrusel />
     </div>
   );
 };

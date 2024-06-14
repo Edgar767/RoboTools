@@ -65,7 +65,7 @@ const Carrusel = ({ images, title, title2Texts }) => {
           <div className={`h-full bg-white w-1 ${showCursor ? 'block' : 'hidden'}`}></div> {/* Barra vertical */}
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-20"></div> {/* Desvanecimiento blanco */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent z-20"></div> {/* Desvanecimiento blanco */}
     </div>
   );
 };

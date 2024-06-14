@@ -1,51 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function InfiniteCarrusel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselItems = [
-    {
-      imageUrl: 'https://picsum.photos/200/300',
-      title: 'Slide 1',
-    },
-    {
-      imageUrl: 'https://picsum.photos/200/301',
-      title: 'Slide 2',
-    },
-    {
-      imageUrl: 'https://picsum.photos/200/302',
-      title: 'Slide 3',
-    },
+const InfiniteCarrusel = () => {
+  const [isPaused, setIsPaused] = useState(false);
+
+  const images = [
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png",
+    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png"
   ];
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (currentIndex < carouselItems.length - 1) {
-        setCurrentIndex((prevState) => prevState + 1);
-      } else {
-        setCurrentIndex(0);
-      }
-    }, 3000);
-
-    return () => clearInterval(intervalId);
-  }, [currentIndex]);
-
   return (
-    <div className="carousel-container">
-      <div
-        className="carousel"
-        style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-        }}
-      >
-        {carouselItems.map((item, index) => (
-          <div key={index} className="carousel-item">
-            <img src={item.imageUrl} alt={item.title} />
-            <h3>{item.title}</h3>
+    <div 
+      className="slider" 
+      onMouseEnter={() => setIsPaused(true)} 
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className={`slide-track ${isPaused ? 'paused' : ''}`}>
+        {images.concat(images).map((src, index) => (
+          <div className="slide" key={index}>
+            <img src={src} alt={`Slide ${index}`} />
           </div>
         ))}
       </div>
     </div>
   );
-}
+};
 
 export default InfiniteCarrusel;

@@ -13,3 +13,41 @@ body {
   /* Estilos para el fondo con cuadrados */
   background-color: #f3f4f6; /* Color de fondo general */
 }
+
+/* InfiniteCarrusel */
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slide-track {
+  display: flex;
+  width: calc(250px * 14); /* 7 imágenes originales duplicadas */
+  animation: scroll 25s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: 250px;
+  height: 100px;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.paused {
+  animation-play-state: paused;
+}

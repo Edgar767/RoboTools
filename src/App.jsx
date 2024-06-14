@@ -1,8 +1,8 @@
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from './Components/Navbar';
-import Inicio from './Pages/Inicio'
-import Nosotros from './Pages/Nosotros'
-import Contacto from './Pages/Contacto'
+import Inicio from './Pages/Inicio';
+import Nosotros from './Pages/Nosotros';
+import Contacto from './Pages/Contacto';
 import Footer from './Components/Footer';
 import ProgramasEscolares from './Pages/ProgramasEscolares/ProgramasEscolares';
 import CursosRobotools from './Pages/CursosRobotools/CursosRobotools';
@@ -59,7 +59,7 @@ const App = () => {
           <div>
               <Navbar /> {/* Mostrar la Navbar en todas las páginas */}
               <Routes>
-                  <Route path="/" element={<Inicio />} />
+                  <Route path="/" element={<Navigate to="/inicio" />} />
                   <Route path="/inicio" element={<Inicio />} />
                   <Route path="/nosotros" element={<Nosotros />} />
                   <Route path="/contacto" element={<Contacto />} />
