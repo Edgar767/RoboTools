@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/Fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  /* Agrega otros estilos y formatos aquí si los tienes */
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* Estilos para el fondo con cuadrados */
+  background-color: #f3f4f6; /* Color de fondo general */
+}
