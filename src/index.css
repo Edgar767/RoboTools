@@ -40,7 +40,7 @@ body {
 .slide {
   flex: 0 0 auto;
   width: 400px; /* Ancho de cada tarjeta */
-  height: 200px; /* Altura de cada tarjeta */
+  height: 300px; /* Altura de cada tarjeta */
   margin-right: 10px; /* Espacio entre las tarjetas */
   border: 0;
   box-sizing: border-box;
@@ -67,4 +67,19 @@ body {
 
 .paused {
   animation-play-state: paused;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.slide-title {
+  color: white;
+  font-size: 1.2rem; /* Tamaño del título más grande */
+  font-weight: bold; /* Texto en negritas */
+  margin: 0;
 }

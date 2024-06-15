@@ -5,13 +5,13 @@ const InfiniteCarrusel = () => {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const cards = [
-    { id: 1, image: "https://via.placeholder.com/400x200", title: "Card 1" },
-    { id: 2, image: "https://via.placeholder.com/400x200", title: "Card 2" },
-    { id: 3, image: "https://via.placeholder.com/400x200", title: "Card 3" },
-    { id: 4, image: "https://via.placeholder.com/400x200", title: "Card 4" },
-    { id: 5, image: "https://via.placeholder.com/400x200", title: "Card 5" },
-    { id: 6, image: "https://via.placeholder.com/400x200", title: "Card 6" },
-    { id: 7, image: "https://via.placeholder.com/400x200", title: "Card 7" }
+    { id: 1, image: "https://via.placeholder.com/400x300", title: "Card 1" },
+    { id: 2, image: "https://via.placeholder.com/400x300", title: "Card 2" },
+    { id: 3, image: "https://via.placeholder.com/400x300", title: "Card 3" },
+    { id: 4, image: "https://via.placeholder.com/400x300", title: "Card 4" },
+    { id: 5, image: "https://via.placeholder.com/400x300", title: "Card 5" },
+    { id: 6, image: "https://via.placeholder.com/400x300", title: "Card 6" },
+    { id: 7, image: "https://via.placeholder.com/400x300", title: "Card 7" }
   ];
 
   const handleCardHover = (id) => {
