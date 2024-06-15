@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const InfiniteCarrusel = () => {
   const [isPaused, setIsPaused] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
-  const images = [
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png",
-    "https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png"
+  const cards = [
+    { id: 1, image: "https://via.placeholder.com/400x200", title: "Card 1" },
+    { id: 2, image: "https://via.placeholder.com/400x200", title: "Card 2" },
+    { id: 3, image: "https://via.placeholder.com/400x200", title: "Card 3" },
+    { id: 4, image: "https://via.placeholder.com/400x200", title: "Card 4" },
+    { id: 5, image: "https://via.placeholder.com/400x200", title: "Card 5" },
+    { id: 6, image: "https://via.placeholder.com/400x200", title: "Card 6" },
+    { id: 7, image: "https://via.placeholder.com/400x200", title: "Card 7" }
   ];
+
+  const handleCardHover = (id) => {
+    setSelectedCard(id);
+  };
 
   return (
     <div 
@@ -20,9 +25,17 @@ const InfiniteCarrusel = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className={`slide-track ${isPaused ? 'paused' : ''}`}>
-        {images.concat(images).map((src, index) => (
-          <div className="slide" key={index}>
-            <img src={src} alt={`Slide ${index}`} />
+        {cards.concat(cards).map((card, index) => (
+          <div 
+            className={`slide ${selectedCard !== null && selectedCard !== card.id ? 'blur-hover' : ''}`} 
+            key={index}
+            onMouseEnter={() => handleCardHover(card.id)}
+            onMouseLeave={() => handleCardHover(null)}
+          >
+            <img src={card.image} alt={card.title} />
+            <div className="slide-content">
+              <h3 className="slide-title">{card.title}</h3>
+            </div>
           </div>
         ))}
       </div>
