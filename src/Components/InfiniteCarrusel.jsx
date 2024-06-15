@@ -1,18 +1,9 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const InfiniteCarrusel = () => {
+const InfiniteCarrusel = ({ cards, autoPause = true }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-
-  const cards = [
-    { id: 1, image: "https://via.placeholder.com/400x300", title: "Card 1" },
-    { id: 2, image: "https://via.placeholder.com/400x300", title: "Card 2" },
-    { id: 3, image: "https://via.placeholder.com/400x300", title: "Card 3" },
-    { id: 4, image: "https://via.placeholder.com/400x300", title: "Card 4" },
-    { id: 5, image: "https://via.placeholder.com/400x300", title: "Card 5" },
-    { id: 6, image: "https://via.placeholder.com/400x300", title: "Card 6" },
-    { id: 7, image: "https://via.placeholder.com/400x300", title: "Card 7" }
-  ];
 
   const handleCardHover = (id) => {
     setSelectedCard(id);
@@ -21,8 +12,8 @@ const InfiniteCarrusel = () => {
   return (
     <div 
       className="slider" 
-      onMouseEnter={() => setIsPaused(true)} 
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={() => autoPause && setIsPaused(true)} 
+      onMouseLeave={() => autoPause && setIsPaused(false)}
     >
       <div className={`slide-track ${isPaused ? 'paused' : ''}`}>
         {cards.concat(cards).map((card, index) => (
@@ -41,6 +32,15 @@ const InfiniteCarrusel = () => {
       </div>
     </div>
   );
+};
+
+InfiniteCarrusel.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  })).isRequired,
+  autoPause: PropTypes.bool,
 };
 
 export default InfiniteCarrusel;

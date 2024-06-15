@@ -12,7 +12,7 @@ import InicioCards from '../Components/InicioCards';
 import image11 from "../img/Imagenes_Inicio/Inicio_Cards/image11.jpeg";
 import image22 from "../img/Imagenes_Inicio/Inicio_Cards/image22.jpeg";
 import image33 from "../img/Imagenes_Inicio/Inicio_Cards/image33.jpeg";
-import InfiniteCarrusel from '../Components/InifinteCarrusel';
+import InfiniteCarrusel from '../Components/InfiniteCarrusel';
 
 const InicioCardsData = [
   {
@@ -33,6 +33,16 @@ const InicioCardsData = [
     alt: "Photo by Fakurian Design",
     link: "/rtsteamacademy",
   },
+];
+
+const InfiniteCarruselData = [
+  { id: 1, image: "https://via.placeholder.com/400x300", title: "Card 1" },
+  { id: 2, image: "https://via.placeholder.com/400x300", title: "Card 2" },
+  { id: 3, image: "https://via.placeholder.com/400x300", title: "Card 3" },
+  { id: 4, image: "https://via.placeholder.com/400x300", title: "Card 4" },
+  { id: 5, image: "https://via.placeholder.com/400x300", title: "Card 5" },
+  { id: 6, image: "https://via.placeholder.com/400x300", title: "Card 6" },
+  { id: 7, image: "https://via.placeholder.com/400x300", title: "Card 7" }
 ];
 
 const images = [image1, image2, image3, image4, image5];
@@ -157,14 +167,14 @@ const Inicio = () => {
 
       <div className="py-12 sm:py-16 lg:py-24 scroll-animation">
         <div className="flex justify-center">
-          <div className="bg-gradient-to-r from-blue-600 to-violet-600 sm:p-10 lg:p-20 rounded-3xl">
+          <div className="bg-gradient-to-tr from-violet-500 to-orange-300 sm:p-10 lg:p-20 rounded-3xl">
             <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">MAS DE NOSOTROS</h2>
             <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white"></p>
             <div className="flex justify-center mt-6"></div>
           </div>
         </div>
       </div>
-      <InfiniteCarrusel />
+      <InfiniteCarrusel cards={InfiniteCarruselData} autoPause={true} />
     </div>
   );
 };

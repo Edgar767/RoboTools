@@ -75,6 +75,9 @@ body {
   left: 0;
   right: 0;
   padding: 10px;
+  background-color: rgba(37, 36, 36, 0.3); /* Fondo semitransparente */
+  backdrop-filter: blur(8px); /* Desenfoque detrás del texto */
+  border-radius: 0 0 8px 8px; /* Ajustar el borde redondeado en la parte inferior */
 }
 
 .slide-title {
