@@ -282,7 +282,7 @@ const Navbar = () => {
               <Link to="/inicio" className="flex items-center text-xl">
                 <img
                   className="h-10 w-auto"
-                  src="/src/img/logo.png"
+                  src="../img/logo.png"
                   alt="Logo"
                 />
               </Link>
