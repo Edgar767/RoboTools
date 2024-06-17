@@ -1,20 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import {
-  HomeIcon,
-  AcademicCapIcon,
-  UserGroupIcon,
-  EllipsisHorizontalCircleIcon,
-  ShoppingBagIcon,
-  BuildingStorefrontIcon,
-  CalendarDaysIcon,
-  BuildingLibraryIcon,
-  NewspaperIcon,
-  RocketLaunchIcon,
-  FireIcon,
-  Bars3Icon,
-  XMarkIcon
-} from "@heroicons/react/24/solid";
+import { HomeIcon, AcademicCapIcon, UserGroupIcon, EllipsisHorizontalCircleIcon, ShoppingBagIcon, BuildingStorefrontIcon, CalendarDaysIcon, BuildingLibraryIcon, NewspaperIcon, RocketLaunchIcon, FireIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);

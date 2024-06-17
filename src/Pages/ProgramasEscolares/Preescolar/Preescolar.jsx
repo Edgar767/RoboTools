@@ -1,103 +1,41 @@
-import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { AcademicCapIcon, ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
 import Card from '../../../Components/Card';
 
 const Preescolar = () => {
-  useEffect(() => {
-    // Desplazar la ventana a la parte superior al cargar la página
-    const scrollToTop = () => {
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'auto' });
-      }, 0);
-    };
-
-    scrollToTop();
-
-    const handleLoad = () => {
-      scrollToTop();
-    };
-
-    window.addEventListener('load', handleLoad);
-    return () => {
-      window.removeEventListener('load', handleLoad);
-    };
-  }, []);
-
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.innerHTML = `
-      /* Animaciones para el zoom en las imágenes */
-      @keyframes zoomIn {
-        0% {
-          transform: scale(0.9);
-          opacity: 0;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-      .image-zoom {
-        animation: zoomIn 0.5s ease-out;
-        transition: transform 0.2s ease-in-out;
-      }
-
-      .image-zoom:hover,
-      .image-zoom:focus {
-        transform: scale(1.05);
-      }
-
-      /* Animaciones para la aparición de elementos al hacer scroll */
-      @keyframes fadeInUp {
-        0% {
-          transform: translateY(20px);
-          opacity: 0;
-        }
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
-      .animate-on-scroll {
-        opacity: 0;
-        transition: opacity 0.6s, transform 0.6s;
-      }
-
-      .animate-on-scroll.animate {
-        animation: fadeInUp 1s forwards; /* Ajusta este tiempo para cambiar la duración de la animación */
-      }
-
-      /* Estilo adicional para las cards */
-      .card-container {
-        margin-bottom: 50px; /* Ajusta este valor según sea necesario */
-      }
-    `;
-    document.head.appendChild(style);
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        } else {
-          entry.target.classList.remove('animate');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => {
-      elements.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
-
   return (
     <div>
-      {/* Botón para regresar */}
-      <Link to="/ProgramasEscolares" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 ml-4 animate-on-scroll">Regresar</Link>
+      <div className="flex justify-center space-x-4 mt-8 mb-4">
+        <div className="flex justify-center">
+        {/* Botón para regresar */}
+          <Link to="/ProgramasEscolares">
+            <button className="btn btn-variation-3">
+              <ArrowLeftCircleIcon className="h-6 w-6" />
+            </button>
+          </Link>
+
+          <Link to="/preescolar">
+            <button className="btn btn-variation-1">
+              <AcademicCapIcon className="h-6 w-6" />
+              Preescolar
+            </button>
+          </Link>
+          <Link to="/primaria">
+            <button className="btn btn-variation-1">
+              <AcademicCapIcon className="h-6 w-6" />
+              Primaria
+            </button>
+          </Link>
+          <Link to="/secundaria">
+            <button className="btn btn-variation-3">
+              <AcademicCapIcon className="h-6 w-6" />
+              Secundaria
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      <h4 className="title color-variation-1 mt-20 mb-10 text-center text-4xl font-extrabold">Preescolar</h4>
 
       {/* Carrusel */}
       <div className="container mx-auto max-w-4xl p-10 animate-on-scroll">
@@ -114,9 +52,8 @@ const Preescolar = () => {
         </div>
       </div>
 
-      <div className="animate-on-scroll card-container">
-        <Card />
-      </div>
+      <Card />
+      
     </div>
   );
 }
