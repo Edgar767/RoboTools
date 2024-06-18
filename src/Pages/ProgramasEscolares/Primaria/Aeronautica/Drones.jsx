@@ -2,7 +2,7 @@ import PostsDouble from "../../../../Components/PostsDouble";
 
 const DoubleData = [
   {
-      href: "#",
+      href: "",
       image: "https://images.unsplash.com/photo-1620243318482-fdd2affd7a38?auto=format&q=75&fit=crop&w=750",
       alt: "Photo by Fakurian Design",
       label: "Drones",

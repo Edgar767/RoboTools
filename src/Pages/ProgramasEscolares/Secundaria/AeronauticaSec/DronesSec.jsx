@@ -2,13 +2,13 @@ import InicioCards from "../../../../Components/InicioCards";
 
 const InicioCardsData = [
     {
-      title: "LITTLE BEE WING",
+      title: "LITE BEE WING",
       image: "",
       alt: "Photo by Fakurian Design",
       link: "",
     },
     {
-      title: "LITTLE BEE WING FM",
+      title: "LITE BEE WING FM",
       image: "",
       alt: "Photo by Fakurian Design",
       link: "",
