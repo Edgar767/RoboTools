@@ -7,7 +7,7 @@ const DoubleData = [
       alt: "Photo by Fakurian Design",
       label: "Drones",
       title: "LITE BEE WING"
-  }
+  },
 ];
 
 const Drones = () => {
