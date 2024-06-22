@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { HomeIcon, AcademicCapIcon, UserGroupIcon, EllipsisHorizontalCircleIcon, ShoppingBagIcon, BuildingStorefrontIcon, CalendarDaysIcon, BuildingLibraryIcon, NewspaperIcon, RocketLaunchIcon, FireIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import {
+  HomeIcon, AcademicCapIcon, UserGroupIcon, EllipsisHorizontalCircleIcon, ShoppingBagIcon,
+  BuildingStorefrontIcon, CalendarDaysIcon, BuildingLibraryIcon, NewspaperIcon,
+  RocketLaunchIcon, FireIcon, Bars3Icon, XMarkIcon
+} from "@heroicons/react/24/solid";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,7 +28,6 @@ const Navbar = () => {
       window.addEventListener("scroll", handleScroll);
     } else {
       setNavbarTransparent(false);
-      window.removeEventListener("scroll", handleScroll);
     }
 
     return () => {
@@ -65,7 +68,6 @@ const Navbar = () => {
     <>
       <style>
         {`
-          /* Transición Transparente de Navbar */
           .transition-colors {
             transition: background-color 0.5s ease;
           }
@@ -146,104 +148,30 @@ const Navbar = () => {
                 </button>
                 {dropdownOpen && (
                   <ul className="absolute top-full right-0 mt-2 p-2 bg-white rounded shadow-lg w-64">
-                    <li className="my-2">
-                      <Link
-                        to="/cursosrobotools"
-                        className={`flex items-center font-bold transition duration-300 ${
-                          isActive("/cursosrobotools")
-                            ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
-                            : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
-                        }`}
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        <FireIcon className="w-5 h-5 mr-1" />
-                        Cursos Robotools
-                      </Link>
-                    </li>
-                    <li className="my-2">
-                      <Link
-                        to="/rtsteamacademy"
-                        className={`flex items-center font-bold transition duration-300 ${
-                          isActive("/rtsteamacademy")
-                            ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
-                            : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
-                        }`}
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        <BuildingLibraryIcon className="w-5 h-5 mr-1" />
-                        RT Steam Academy
-                      </Link>
-                    </li>
-                    <li className="my-2">
-                      <Link
-                        to="/salasinteractivas"
-                        className={`flex items-center font-bold transition duration-300 ${
-                          isActive("/salasinteractivas")
-                            ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
-                            : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
-                        }`}
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        <RocketLaunchIcon className="w-5 h-5 mr-1" />
-                        Salas Interactivas
-                      </Link>
-                    </li>
-                    <li className="my-2">
-                      <Link
-                        to="/productos"
-                        className={`flex items-center font-bold transition duration-300 ${
-                          isActive("/productos")
-                            ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
-                            : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
-                        }`}
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        <ShoppingBagIcon className="w-5 h-5 mr-1" />
-                        Productos
-                      </Link>
-                    </li>
-                    <li className="my-2">
-                      <Link
-                        to="/tienda"
-                        className={`flex items-center font-bold transition duration-300 ${
-                          isActive("/tienda")
-                            ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
-                            : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
-                        }`}
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        <BuildingStorefrontIcon className="w-5 h-5 mr-1" />
-                        Tienda
-                      </Link>
-                    </li>
-                    <li className="my-2">
-                      <Link
-                        to="/eventos"
-                        className={`flex items-center font-bold transition duration-300 ${
-                          isActive("/eventos")
-                            ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
-                            : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
-                        }`}
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        <CalendarDaysIcon className="w-5 h-5 mr-1" />
-                        Eventos
-                      </Link>
-                    </li>
-                    <li className="my-2">
-                      <Link
-                        to="/noticias"
-                        className={`flex items-center font-bold transition duration-300 ${
-                          isActive("/noticias")
-                            ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
-                            : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
-                        }`}
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        <NewspaperIcon className="w-5 h-5 mr-1" />
-                        Noticias
-                      </Link>
-                    </li>
+                    {[
+                      { to: "/cursosrobotools", icon: <FireIcon className="w-5 h-5 mr-1" />, text: "Cursos Robotools" },
+                      { to: "/rtsteamacademy", icon: <BuildingLibraryIcon className="w-5 h-5 mr-1" />, text: "RT Steam Academy" },
+                      { to: "/salasinteractivas", icon: <RocketLaunchIcon className="w-5 h-5 mr-1" />, text: "Salas Interactivas" },
+                      { to: "/productos", icon: <ShoppingBagIcon className="w-5 h-5 mr-1" />, text: "Productos" },
+                      { to: "/tienda", icon: <BuildingStorefrontIcon className="w-5 h-5 mr-1" />, text: "Tienda" },
+                      { to: "/eventos", icon: <CalendarDaysIcon className="w-5 h-5 mr-1" />, text: "Eventos" },
+                      { to: "/noticias", icon: <NewspaperIcon className="w-5 h-5 mr-1" />, text: "Noticias" }
+                    ].map((link) => (
+                      <li className="my-2" key={link.to}>
+                        <Link
+                          to={link.to}
+                          className={`flex items-center font-bold transition duration-300 ${
+                            isActive(link.to)
+                              ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
+                              : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
+                          }`}
+                          onClick={() => setDropdownOpen(false)}
+                        >
+                          {link.icon}
+                          {link.text}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 )}
               </li>
@@ -263,113 +191,35 @@ const Navbar = () => {
           </div>
         </div>
         {menuOpen && (
-          <div className="md:hidden h-screen overflow-y-auto bg-white absolute top-0 left-0 right-0 z-40">
-            <div className="flex justify-between items-center p-4">
-              <Link to="/inicio" className="flex items-center text-xl">
-                <img
-                  className="h-10 w-auto"
-                  src="../img/logo.png"
-                  alt="Logo"
-                />
-              </Link>
-              <button
-                onClick={handleMenuToggle}
-                className="p-2 rounded-md text-black focus:outline-none"
-              >
-                <XMarkIcon className="w-6 h-6" />
-              </button>
-            </div>
-            <ul className="flex flex-col items-center space-y-4 mt-4">
-              <li>
-                <Link
-                  to="/inicio"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/inicio")}
-                >
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/nosotros"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/nosotros")}
-                >
-                  Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/programasescolares"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/programasescolares")}
-                >
-                  Programas Escolares
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/cursosrobotools"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/cursosrobotools")}
-                >
-                  Cursos Robotools
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/rtsteamacademy"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/rtsteamacademy")}
-                >
-                  RT Steam Academy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/salasinteractivas"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/salasinteractivas")}
-                >
-                  Salas Interactivas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/productos"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/productos")}
-                >
-                  Productos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/tienda"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/tienda")}
-                >
-                  Tienda
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/eventos"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/eventos")}
-                >
-                  Eventos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/noticias"
-                  className="text-black hover:text-blue-500"
-                  onClick={() => handleLinkClick("/noticias")}
-                >
-                  Noticias
-                </Link>
-              </li>
+          <div className="md:hidden mt-2">
+            <ul className="flex flex-col items-center space-y-4">
+              {[
+                { to: "/inicio", icon: <HomeIcon className="w-5 h-5 mr-1" />, text: "Inicio" },
+                { to: "/nosotros", icon: <UserGroupIcon className="w-5 h-5 mr-1" />, text: "Nosotros" },
+                { to: "/programasescolares", icon: <AcademicCapIcon className="w-5 h-5 mr-1" />, text: "Programas Escolares" },
+                { to: "/cursosrobotools", icon: <FireIcon className="w-5 h-5 mr-1" />, text: "Cursos Robotools" },
+                { to: "/rtsteamacademy", icon: <BuildingLibraryIcon className="w-5 h-5 mr-1" />, text: "RT Steam Academy" },
+                { to: "/salasinteractivas", icon: <RocketLaunchIcon className="w-5 h-5 mr-1" />, text: "Salas Interactivas" },
+                { to: "/productos", icon: <ShoppingBagIcon className="w-5 h-5 mr-1" />, text: "Productos" },
+                { to: "/tienda", icon: <BuildingStorefrontIcon className="w-5 h-5 mr-1" />, text: "Tienda" },
+                { to: "/eventos", icon: <CalendarDaysIcon className="w-5 h-5 mr-1" />, text: "Eventos" },
+                { to: "/noticias", icon: <NewspaperIcon className="w-5 h-5 mr-1" />, text: "Noticias" }
+              ].map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    className={`flex items-center font-bold transition duration-300 ${
+                      isActive(link.to)
+                        ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
+                        : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
+                    }`}
+                    onClick={() => handleLinkClick(link.to)}
+                  >
+                    {link.icon}
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         )}
