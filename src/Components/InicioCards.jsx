@@ -12,8 +12,15 @@ const InicioCards = ({ title, description, cards }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((card, index) => (
             <a key={index} href={card.link} className="group relative flex h-64 sm:h-72 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-              <img src={card.image} loading="lazy" alt={card.alt} className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
+              <div className="absolute inset-0">
+                <img 
+                  src={card.image} 
+                  loading="lazy" 
+                  alt={card.alt} 
+                  className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-200"></div>
+              </div>
               <div className="relative flex flex-col">
                 <span className="text-gray-300">Echa un Vistazo</span>
                 <span className="text-lg font-semibold text-white lg:text-xl">{card.title}</span>
