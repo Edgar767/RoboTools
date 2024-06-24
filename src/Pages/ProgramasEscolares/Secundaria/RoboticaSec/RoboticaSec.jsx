@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import PostsSubSection from '../../../../Components/PostsSubSection';
+import FullContentModal from '../../../../Components/FullContentModal';
+import LegoEducationSec from './LegoEducationSec';
 
 const postsData = [
     {
@@ -6,7 +9,8 @@ const postsData = [
         desc: "Going into this journey, I had a standard therapy regimen, based on looking at the research literature. After I saw the movie, I started to ask other people.",
         img: "https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         date: "",
-        href: "/legoeducationsec" // Ruta a la que se redirigirá al presionar esta entrada
+        href: "/legoeducationsec", // Ruta a la que se redirigirá al presionar esta entrada
+        useModal: true
     },
     {
         title: "MICROBIT + CROWBITS",
@@ -25,10 +29,34 @@ const postsData = [
 ]
 
 const RoboticaSec = () => {
+    const [modalContent, setModalContent] = useState(null);
+
+    const handlePostClick = (post) => {
+        if (post.useModal) {
+            switch(post.title) {
+                case "LEGO EDUCATION":
+                    setModalContent(<LegoEducationSec />);
+                    break;
+                default:
+                    window.location.href = post.href;
+            }
+        } else {
+            window.location.href = post.href;
+        }
+    };
+
+    const closeModal = () => setModalContent(null);
+
     return (
     <div>
         <h4 className="title color-variation-1 mt-20 mb-0 text-center text-4xl font-extrabold">ROBOTICA SECUNDARIA</h4>
-            <PostsSubSection posts={postsData} />
+            <PostsSubSection posts={postsData} onPostClick={handlePostClick} />
+
+            <FullContentModal
+                isOpen={modalContent !== null}
+                onClose={closeModal}
+                content={modalContent}
+            />
     </div>
     )
 }
