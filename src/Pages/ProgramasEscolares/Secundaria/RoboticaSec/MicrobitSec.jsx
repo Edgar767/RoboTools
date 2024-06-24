@@ -19,28 +19,12 @@ const DoubleData = [
 
 const MicrobitSec = () => {
     return (
-        <div className="container mx-auto max-w-4xl p-10">
-        {/* Carrusel */}
-        <div className="w-full carousel rounded-box mb-20">
-          <div className="w-full carousel-item">
-            <img src="https://via.placeholder.com/1800x1000" alt="Carrusel 1" className="w-full" />
-          </div>
-          <div className="w-full carousel-item">
-            <img src="https://via.placeholder.com/1800x1000" alt="Carrusel 2" className="w-full" />
-          </div>
-          <div className="w-full carousel-item">
-            <img src="https://via.placeholder.com/1800x1000" alt="Carrusel 3" className="w-full" />
-          </div>
-        </div>
-
         <PostsDouble
             title="MICROBIT + C.T. STARTER KIT"
             description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
             cards={DoubleData}
         />
-
-      </div>
     );
-  };
+};
 
 export default MicrobitSec;
