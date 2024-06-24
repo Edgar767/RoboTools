@@ -14,7 +14,12 @@ const PostsSection = ({ posts }) => {
                         {/* Primera columna */}
                         {firstColumn.map((item, index) => (
                             <Link to={item.href} key={index} className="w-full group relative overflow-hidden rounded-lg shadow-lg">
-                                <img src={item.img} loading="lazy" alt={item.title} className="object-cover object-center w-full h-full rounded-lg" />
+                                <img 
+                                    src={item.img} 
+                                    loading="lazy" 
+                                    alt={item.title} 
+                                    className="object-cover object-center w-full h-full rounded-lg transition duration-200 group-hover:scale-110"
+                                />
                                 <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-50 rounded-lg"></div>
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-lg">
                                     <h3 className="text-3xl text-white font-extrabold">{item.title}</h3>
@@ -30,7 +35,12 @@ const PostsSection = ({ posts }) => {
                         {/* Segunda columna */}
                         {secondColumn.map((item, index) => (
                             <Link to={item.href} key={index} className="w-full group relative overflow-hidden rounded-lg shadow-lg">
-                                <img src={item.img} loading="lazy" alt={item.title} className="object-cover object-center w-full h-full rounded-lg" />
+                                <img 
+                                    src={item.img} 
+                                    loading="lazy" 
+                                    alt={item.title} 
+                                    className="object-cover object-center w-full h-full rounded-lg transition duration-200 group-hover:scale-110"
+                                />
                                 <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-50 rounded-lg"></div>
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 rounded-lg">
                                     <h3 className="text-3xl text-white font-extrabold">{item.title}</h3>
