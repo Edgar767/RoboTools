@@ -73,7 +73,6 @@ const Preescolar = () => {
       </div>
 
     <div>
-      <h4 className="title color-variation-1 mt-20 mb-0 text-center text-4xl font-extrabold">Preescolar</h4>
           <PostsSubSection posts={postsData} />
     </div>
       

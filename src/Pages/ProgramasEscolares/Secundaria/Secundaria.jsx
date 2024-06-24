@@ -78,8 +78,6 @@ const Secundaria = () => {
           </button>
         </Link>
       </div>
-
-        <h4 className="title color-variation-1 mt-20 mb-10 text-center text-4xl font-extrabold">Secundaria</h4>
         <PostsSection posts={postsData} />
     </div>
     );
