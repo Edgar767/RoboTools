@@ -2,6 +2,8 @@ import { useState } from 'react';
 import PostsSubSection from '../../../../Components/PostsSubSection';
 import FullContentModal from '../../../../Components/FullContentModal';
 import LegoEducationSec from './LegoEducationSec';
+import MicrobitSec from './MicrobitSec';
+import MojoRTSec from './MojoRTSec';
 
 const postsData = [
     {
@@ -17,14 +19,16 @@ const postsData = [
         desc: "According to him, â€œI'm still surprised that this has happened. But we are surprised because we are so surprised.â€More revelations.",
         img: "https://images.unsplash.com/photo-1620287341056-49a2f1ab2fdc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         date: "",
-        href: "/microbitsec" // Ruta a la que se redirigirá al presionar esta entrada
+        href: "/microbitsec", // Ruta a la que se redirigirá al presionar esta entrada
+        useModal: true
     },
     {
         title: "MOJO RT",
         desc: "I hope I remembered all the stuff that they needed to know. They're like, 'okay,' and write it in their little reading notebooks.",
         img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         date: "",
-        href: "/" // Ruta a la que se redirigirá al presionar esta entrada
+        href: "/mojortsec", // Ruta a la que se redirigirá al presionar esta entrada
+        useModal: true
     }
 ]
 
@@ -36,6 +40,12 @@ const RoboticaSec = () => {
             switch(post.title) {
                 case "LEGO EDUCATION":
                     setModalContent(<LegoEducationSec />);
+                    break;
+                case "MICROBIT + CROWBITS":
+                    setModalContent(<MicrobitSec />);
+                    break;
+                case "MOJO RT":
+                    setModalContent(<MojoRTSec />);
                     break;
                 default:
                     window.location.href = post.href;

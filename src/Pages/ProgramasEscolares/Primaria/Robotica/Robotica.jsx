@@ -3,6 +3,7 @@ import PostsSubSection from '../../../../Components/PostsSubSection';
 import FullContentModal from '../../../../Components/FullContentModal';
 import LegoEducation from './LegoEducation';
 import Microbit from './Microbit';
+import MojoRT from './MojoRT';
 
 const postsData = [
     {
@@ -26,7 +27,8 @@ const postsData = [
         desc: "I hope I remembered all the stuff that they needed to know. They're like, 'okay,' and write it in their little reading notebooks.",
         img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         date: "",
-        href: "/Mojort" // Ruta a la que se redirigirá al presionar esta entrada
+        href: "/Mojort", // Ruta a la que se redirigirá al presionar esta entrada
+        useModal: true
     }
 ]
 
@@ -41,6 +43,9 @@ const Robotica = () => {
                     break;
                 case "MICROBIT + CROWBITS":
                     setModalContent(<Microbit />);
+                    break;
+                case "MOJO RT":
+                    setModalContent(<MojoRT />);
                     break;
                 default:
                     window.location.href = post.href;

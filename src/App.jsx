@@ -27,6 +27,7 @@ import Breakout from './Pages/ProgramasEscolares/Primaria/Breakout/Breakout';
 import RoboticaSec from './Pages/ProgramasEscolares/Secundaria/RoboticaSec/RoboticaSec';
 import LegoEducationSec from './Pages/ProgramasEscolares/Secundaria/RoboticaSec/LegoEducationSec';
 import MicrobitSec from './Pages/ProgramasEscolares/Secundaria/RoboticaSec/MicrobitSec';
+import MojoRTSec from './Pages/ProgramasEscolares/Secundaria/RoboticaSec/MojoRTSec';
 import AeronauticaSec from './Pages/ProgramasEscolares/Secundaria/AeronauticaSec/AeronauticaSec';
 import CohetesSec from './Pages/ProgramasEscolares/Secundaria/AeronauticaSec/CohetesSec';
 import DronesSec from './Pages/ProgramasEscolares/Secundaria/AeronauticaSec/DronesSec';
@@ -86,6 +87,7 @@ const App = () => {
                   <Route path="/roboticasec" element={<RoboticaSec />} />
                   <Route path="/legoeducationsec" element={<LegoEducationSec />} />
                   <Route path="/microbitsec" element={<MicrobitSec />} />
+                  <Route path="/mojortsec" element={<MojoRTSec />} />
                   <Route path="/aeronauticasec" element={<AeronauticaSec />} />
                   <Route path="/cohetessec" element={<CohetesSec />} />
                   <Route path="/dronessec" element={<DronesSec />} />
