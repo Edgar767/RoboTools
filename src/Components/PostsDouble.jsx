@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const PostsDouble = ({ title, description, cards }) => {
+const PostsDouble = ({ title, description, cards, onCardClick }) => {
     return (
         <>
             <div className="container mx-auto max-w-4xl p-10">
@@ -15,14 +15,18 @@ const PostsDouble = ({ title, description, cards }) => {
             </div>
             <div className="container mx-auto max-w-screen-2xl p-10 flex justify-center space-x-6">
                 {cards.map((option, index) => (
-                    <a key={index} href={option.href} className="group relative flex h-[80vh] w-[35vw] items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+                      <div 
+                        key={index} 
+                        className="group relative flex h-[80vh] w-[35vw] items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg cursor-pointer"
+                        onClick={() => onCardClick ? onCardClick(option) : window.location.href = option.href}
+                       >
                         <img src={option.image} loading="lazy" alt={option.alt} className="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
                         <div className="relative flex flex-col">
                             <span className="text-gray-300">{option.label}</span>
                             <span className="text-lg font-semibold text-white lg:text-xl">{option.title}</span>
                         </div>
-                    </a>
+                    </div>
                 ))}
             </div>
         </>
@@ -37,8 +41,9 @@ PostsDouble.propTypes = {
         image: PropTypes.string.isRequired,
         alt: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired
-    })).isRequired
+        title: PropTypes.string.isRequired,
+    })).isRequired,
+    onCardClick: PropTypes.func
 };
 
 export default PostsDouble;
