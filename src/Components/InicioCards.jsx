@@ -5,8 +5,10 @@ const InicioCards = ({ title, description, cards }) => {
     <div className="py-12 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div className="mb-10 md:mb-16">
-          <h2 className="mb-4 text-center text-5xl font-bold text-gray-800 md:mb-6 lg:text-5xl">{title}</h2>
-          <p className="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">{description}</p>
+          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 md:mb-6">{title}</h2>
+          {description && (
+            <p className="mx-auto max-w-screen-md text-center text-sm sm:text-base md:text-lg text-gray-500">{description}</p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -22,8 +24,10 @@ const InicioCards = ({ title, description, cards }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-50 group-hover:opacity-75 transition-opacity duration-200"></div>
               </div>
               <div className="relative flex flex-col z-10">
-                <span className="font-semibold text-gray-300">{card.desc}</span>
-                <span className="text-lg font-bold text-white lg:text-xl">{card.title}</span>
+                {card.desc && (
+                  <span className="font-semibold text-xs sm:text-sm md:text-base text-gray-300">{card.desc}</span>
+                )}
+                <span className="text-base sm:text-lg md:text-xl font-bold text-white">{card.title}</span>
               </div>
             </a>
           ))}
@@ -35,11 +39,11 @@ const InicioCards = ({ title, description, cards }) => {
 
 InicioCards.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
-      desc: PropTypes.string.isRequired,
+      desc: PropTypes.string,
       image: PropTypes.string.isRequired,
       alt: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
