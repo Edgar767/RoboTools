@@ -6,7 +6,7 @@ const InicioCardsData = [
     desc: "",
     image: "",
     alt: "Photo by Fakurian Design",
-    link: "/cursosteam",
+    link: "/rtsteamacademy",
   },
   {
     title: "HORARIOS Y COSTOS",
