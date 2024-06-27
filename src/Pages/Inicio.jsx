@@ -17,18 +17,21 @@ import InfiniteCarrusel from '../Components/InfiniteCarrusel';
 const InicioCardsData = [
   {
     title: "PROGRAMAS ESCOLARES",
+    desc: "ECHALE UN OJO",
     image: image11,
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
   },
   {
     title: "CURSOS ROBOTOOLS",
+    desc: "ECHALE UN OJO",
     image: image22,
     alt: "Photo by Fakurian Design",
     link: "/cursosrobotools",
   },
   {
     title: "RT STEAM ACADEMY",
+    desc: "ECHALE UN OJO",
     image: image33,
     alt: "Photo by Fakurian Design",
     link: "/rtsteamacademy",
