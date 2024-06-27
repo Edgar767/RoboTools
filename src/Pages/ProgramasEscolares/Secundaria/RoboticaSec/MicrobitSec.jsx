@@ -1,4 +1,5 @@
 import PostsDouble from "../../../../Components/PostsDouble";
+import PropTypes from 'prop-types';
 
 const DoubleData = [
   {
@@ -17,14 +18,19 @@ const DoubleData = [
   }
 ];
 
-const MicrobitSec = () => {
+const MicrobitSec = ({ isInModal }) => {
     return (
         <PostsDouble
             title="MICROBIT + C.T. STARTER KIT"
             description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
             cards={DoubleData}
+            isInModal={isInModal}
         />
     );
+};
+
+MicrobitSec.propTypes = {
+    isInModal: PropTypes.bool
 };
 
 export default MicrobitSec;

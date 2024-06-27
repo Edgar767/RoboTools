@@ -1,4 +1,5 @@
 import PostsDouble from "../../../../Components/PostsDouble";
+import PropTypes from 'prop-types';
 
 const DoubleData = [
   {
@@ -17,14 +18,19 @@ const DoubleData = [
   }
 ];
 
-const MojoRT = () => {
+const MojoRT = ({ isInModal }) => {
     return (
         <PostsDouble
             title="MOJORT"
             description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
             cards={DoubleData}
+            isInModal={isInModal}
         />
     );
 };
 
+MojoRT.propTypes = {
+    isInModal: PropTypes.bool
+  };
+  
 export default MojoRT;

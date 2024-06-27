@@ -42,10 +42,10 @@ const RoboticaSec = () => {
                     setModalContent(<LegoEducationSec />);
                     break;
                 case "MICROBIT + CROWBITS":
-                    setModalContent(<MicrobitSec />);
+                    setModalContent(<MicrobitSec isInModal={true} />);
                     break;
                 case "MOJO RT":
-                    setModalContent(<MojoRTSec />);
+                    setModalContent(<MojoRTSec isInModal={true} />);
                     break;
                 default:
                     window.location.href = post.href;

@@ -1,4 +1,5 @@
 import PostsDouble from "../../../../Components/PostsDouble";
+import PropTypes from 'prop-types';
 
 const DoubleData = [
   {
@@ -10,14 +11,19 @@ const DoubleData = [
   },
 ];
 
-const Drones = () => {
+const Drones = ({ isInModal }) => {
   return (
-    <PostsDouble
+      <PostsDouble
           title="DRONES"
           description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
           cards={DoubleData}
+          isInModal={isInModal}
       />
   );
+};
+
+Drones.propTypes = {
+  isInModal: PropTypes.bool
 };
 
 export default Drones;

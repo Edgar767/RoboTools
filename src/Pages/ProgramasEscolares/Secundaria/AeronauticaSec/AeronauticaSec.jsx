@@ -30,10 +30,10 @@ const AeronauticaSec = () => {
     if (card.useModal) {
         switch(card.title) {
             case "Cohetes Sec":
-                setModalContent(<CohetesSec />);
+                setModalContent(<CohetesSec isInModal={true} />);
                 break;
             case "Drones Sec":
-                setModalContent(<DronesSec />);
+                setModalContent(<DronesSec isInModal={true} />);
                 break;
             default:
                 window.location.href = card.href;

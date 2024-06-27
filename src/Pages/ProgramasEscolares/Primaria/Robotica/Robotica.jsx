@@ -45,7 +45,7 @@ const Robotica = () => {
                     setModalContent(<Microbit />);
                     break;
                 case "MOJO RT":
-                    setModalContent(<MojoRT />);
+                    setModalContent(<MojoRT isInModal={true} />);
                     break;
                 default:
                     window.location.href = post.href;
