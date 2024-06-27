@@ -19,11 +19,11 @@ const InicioCards = ({ title, description, cards }) => {
                   alt={card.alt} 
                   className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" 
                 />
-                <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity duration-200"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-50 group-hover:opacity-75 transition-opacity duration-200"></div>
               </div>
-              <div className="relative flex flex-col">
-                <span className="text-gray-300">Echa un Vistazo</span>
-                <span className="text-lg font-semibold text-white lg:text-xl">{card.title}</span>
+              <div className="relative flex flex-col z-10">
+                <span className="font-semibold text-gray-300">{card.desc}</span>
+                <span className="text-lg font-bold text-white lg:text-xl">{card.title}</span>
               </div>
             </a>
           ))}
@@ -39,6 +39,7 @@ InicioCards.propTypes = {
   cards: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
+      desc: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
       alt: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
