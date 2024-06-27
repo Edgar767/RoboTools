@@ -1,10 +1,56 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import InicioCards from '../../Components/InicioCards';
 import { AcademicCapIcon } from "@heroicons/react/24/solid";
 import InfiniteCarrusel from "../../Components/InfiniteCarrusel";
-import prueba1 from "../../img/Imagenes_Programas/prueba1.png";
-import prueba2 from "../../img/Imagenes_Programas/prueba2.png";
-import prueba3 from "../../img/Imagenes_Programas/prueba3.png";
+
+const CardsData = [
+  {
+    title: "Titulo 1",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "Titulo 2",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
+    link: "/cursosrobotools",
+  },
+  {
+    title: "Titulo 3",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
+    link: "/rtsteamacademy",
+  },
+];
+
+const CardsData2 = [
+  {
+    title: "MATERIALES",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
+    link: "",
+  },
+  {
+    title: "PLANES DE ESTUDIO",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
+    link: "",
+  },
+  {
+    title: "SOPORTE PEDAGOGICO",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
+    link: "",
+  },
+];
 
 const InfiniteCarruselData = [
   { id: 1, image: "https://via.placeholder.com/400x300", title: "Desarrollo cognitivo intelectual" },
@@ -56,57 +102,19 @@ const ProgramasEscolares = () => {
 
       <h4 className="title color-variation-1 mt-8 mb-20 text-center text-4xl font-extrabold">NUESTROS PROGRAMAS INTEGRAN</h4>
 
-      {/* Contenedor de imágenes */}
+      {/* Carrusel */}
       <InfiniteCarrusel cards={InfiniteCarruselData} autoPause={true} />
 
-      <h4 className="title color-variation-1 mt-20 mb-20 text-center text-4xl font-extrabold">METODOLOGIAS DE NUESTROS PROGRAMAS</h4>
 
-      {/* Contenedor de imágenes */}
-      <div className="grid grid-cols-3 gap-4 justify-items-center mb-4 max-w-screen-lg mx-auto">
-        <div className="text-center border border-gray-300 p-4 rounded-lg">
-          <img src={prueba1} alt="Descripción 1" className="w-full h-auto object-contain" />
-          <div className="mt-8 mb-4">
-            <h5 className="text-2xl font-bold">TITULO 1</h5>
-          </div>
-        </div>
-        <div className="text-center border border-gray-300 p-4 rounded-lg">
-          <img src={prueba2} alt="Descripción 2" className="w-full h-auto object-contain" />
-          <div className="mt-8 mb-4">
-            <h5 className="text-2xl font-bold">TITULO 2</h5>
-          </div>
-        </div>
-        <div className="text-center border border-gray-300 p-4 rounded-lg">
-          <img src={prueba3} alt="Descripción 3" className="w-full h-auto object-contain" />
-          <div className="mt-8 mb-4">
-            <h5 className="text-2xl font-bold">TITULO 3</h5>
-          </div>
-        </div>
-      </div>
+      <InicioCards
+          title='METODOLOGIAS DE NUESTROS PROGRAMAS'
+          cards={CardsData}
+      />
 
-      <h4 className="title color-variation-1 mt-20 mb-20 text-center text-4xl font-extrabold">ELEMENTOS DE NUESTROS PROGRAMAS </h4>
-
-       {/* Contenedor de imágenes */}
-       <div className="grid grid-cols-3 gap-4 justify-items-center mb-20 max-w-screen-lg mx-auto">
-        <div className="text-center border border-gray-300 p-4 rounded-lg">
-          <img src={prueba1} alt="Descripción 1" className="w-full h-auto object-contain" />
-          <div className="mt-8 mb-4">
-            <h5 className="text-2xl font-bold">MATERIALES</h5>
-          </div>
-        </div>
-        <div className="text-center border border-gray-300 p-4 rounded-lg">
-          <img src={prueba2} alt="Descripción 2" className="w-full h-auto object-contain" />
-          <div className="mt-8 mb-4">
-            <h5 className="text-2xl font-bold">PLANES DE ESTUDIO</h5>
-          </div>
-        </div>
-        <div className="text-center border border-gray-300 p-4 rounded-lg">
-          <img src={prueba3} alt="Descripción 3" className="w-full h-auto object-contain" />
-          <div className="mt-4 mb-4">
-            <h5 className="text-2xl font-bold">SOPORTE PEDAGOGICO</h5>
-          </div>
-        </div>
-      </div>
-
+      <InicioCards
+          title="ELEMENTOS DE NUESTROS CURSOS"
+          cards={CardsData2}
+      />
     </div>
   );
 };
