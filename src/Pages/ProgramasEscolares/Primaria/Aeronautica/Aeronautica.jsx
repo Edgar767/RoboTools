@@ -30,7 +30,7 @@ const Aeronautica = () => {
         if (card.useModal) {
             switch(card.title) {
                 case "Cohetes":
-                    setModalContent(<Cohetes />);
+                    setModalContent(<Cohetes isInModal={true} />);
                     break;
                 case "Drones":
                     setModalContent(<Drones />);
