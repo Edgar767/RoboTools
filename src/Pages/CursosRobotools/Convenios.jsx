@@ -1,7 +1,7 @@
 const Convenios = () => {
     return (
       <div>
-        <h1>Conevnios</h1>
+        <h1>Convenios</h1>
         <p>Contenido de la página de contacto...</p>
       </div>
     );
