@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const PostsDouble = ({ title, description, cards, onCardClick, isInModal }) => {
+const PostsDouble = ({ title, description, cards, onCardClick, isInModal = false }) => {
     const isSingleCard = cards.length === 1;
 
     return (
@@ -53,10 +53,6 @@ PostsDouble.propTypes = {
     })).isRequired,
     onCardClick: PropTypes.func,
     isInModal: PropTypes.bool
-};
-
-PostsDouble.defaultProps = {
-    isInModal: false
 };
 
 export default PostsDouble;
