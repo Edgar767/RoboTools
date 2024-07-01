@@ -1,5 +1,4 @@
-import React from 'react';
-import Cards from '../../../Components/Cards';
+import Cards from '../../../Components/Productos/Cards';
 import { microbitData } from '../dataCardsProductos';
 
 const MicrobitProductos = () => {

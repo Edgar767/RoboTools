@@ -1,5 +1,4 @@
-import React from 'react';
-import Cards from '../../../Components/Cards';
+import Cards from '../../../Components/Productos/Cards';
 import { next20Data } from '../dataCardsProductos';
 
 const Next20Productos = () => {
