@@ -1,4 +1,4 @@
-import PostsSubSection from '../../../../Components/PostsSubSection';
+import PostsSubSection from '../../../../Components/ProgramasEscolares/PostsSubSection';
 
 const postsData = [
     {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import PostsSection from '../../../Components/PostsSection';
+import PostsSection from '../../../Components/ProgramasEscolares/PostsSection';
 import { AcademicCapIcon, ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
 
 const postsData = [

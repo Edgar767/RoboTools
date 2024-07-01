@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AcademicCapIcon, ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
-import PostsSubSection from '../../../Components/PostsSubSection';
+import PostsSubSection from '../../../Components/ProgramasEscolares/PostsSubSection';
 
 const postsData = [
   {

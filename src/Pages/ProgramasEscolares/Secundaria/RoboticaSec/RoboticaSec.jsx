@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PostsSubSection from '../../../../Components/PostsSubSection';
+import PostsSubSection from '../../../../Components/ProgramasEscolares/PostsSubSection';
 import FullContentModal from '../../../../Components/FullContentModal';
 import LegoEducationSec from './LegoEducationSec';
 import MicrobitSec from './MicrobitSec';

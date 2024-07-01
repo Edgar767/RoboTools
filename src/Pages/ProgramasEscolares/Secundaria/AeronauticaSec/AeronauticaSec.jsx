@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PostsDouble from "../../../../Components/PostsDouble";
+import PostsDouble from "../../../../Components/ProgramasEscolares/PostsDouble";
 import FullContentModal from "../../../../Components/FullContentModal";
 import CohetesSec from './CohetesSec';
 import DronesSec from './DronesSec';

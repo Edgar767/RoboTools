@@ -1,4 +1,4 @@
-import PostsDouble from "../../../../Components/PostsDouble";
+import PostsDouble from "../../../../Components/ProgramasEscolares/PostsDouble";
 import PropTypes from 'prop-types';
 
 const DoubleData = [
