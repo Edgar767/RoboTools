@@ -1,4 +1,4 @@
-import Tabs from '../../Components/Tabs';
+import Tabs from '../../Components/Productos/Tabs';
 import {
   legoEducationData,
   qoboData,
