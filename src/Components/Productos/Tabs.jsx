@@ -31,19 +31,78 @@ const Tabs = ({
 }) => {
   const [activeTab, setActiveTab] = useState(localStorage.getItem('activeTab') || 'tab1');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('Todos');
 
   useEffect(() => {
     localStorage.setItem('activeTab', activeTab);
+    setSelectedFilter('Todos'); //Reinicia el filtro cuando se cambia de pestaña
   }, [activeTab]);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  const handleFilterChange = (e) => {
+    setSelectedFilter(e.target.value);
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    // Reinicia el filtro cuando se cambia de pestaña
+    setSelectedFilter('Todos');
+  };
+
   const filteredCards = (cards) => 
     cards.filter((card) =>
       card.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+  const filterByCategory = (cards, category) =>
+    category === 'Todos' ? cards : cards.filter(card => card.category === category);
+
+  const categoryRoutes = {
+    //ROBOTICA
+    'LEGO EDUCATION': '/legoproductos',
+    'QOBO': '/qoboproductos',
+    'NEXT 2.0': '/next20productos',
+    'MICROBIT': '/microbitproductos',
+    'CROWBITS': '/crowbitsproductos',
+    'CROWTAILS': '/crowtailsproductos',
+    'MOJORT': '/mojortproductos',
+    //AERONAUTICA
+    'DRONES': '/dronesproductos',
+    'COHETES KIT BASICO': '/cohetebasicoproductos',
+    'COHETES KIT AVANZADO': '/coheteavanzadoproductos',
+    //REALIDAD VIRTUAL
+    'VISORES': '/visoresproductos',
+    'MERGE CUBE': '/mergecubeproductos',
+    'KIT MERGE VISOR + MERGE CUBE': '/kitmergeproductos',
+  };
+
+  const renderFilteredContent = (categoryData, title) => {
+    let filtered = filteredCards(categoryData);
+    filtered = filterByCategory(filtered, selectedFilter);
+  
+    if ((searchTerm || selectedFilter !== 'Todos') && filtered.length > 0) {
+      return <Cards cards={filtered} />;
+    }
+  
+    if (!searchTerm && selectedFilter === 'Todos') {
+      return (
+        <>
+          <h2 className="text-2xl font-bold mb-6 mt-8 text-left">{title}</h2>
+          {renderLimitedCards(filtered)}
+          <div className="flex justify-center my-8">
+            <Link to={categoryRoutes[title] || '/'}>
+              <button className="btn btn-outline btn-primary">Ver Mas</button>
+            </Link>
+          </div>
+        </>
+      );
+    }
+  
+    return null;
+  };
 
   const settings = {
     dots: true,
@@ -55,11 +114,6 @@ const Tabs = ({
     autoplaySpeed: 3000,
   };
 
-  const renderCardsOrMessage = (cards) => {
-    const filtered = filteredCards(cards);
-    return filtered.length > 0 ? <Cards cards={filtered} /> : <h2>No se Encontro el Producto que esta buscando :(</h2>;
-  };
-
   const renderLimitedCards = (cards) => {
     const limitedCards = cards.slice(0, 4);
     return <Cards cards={limitedCards} />;
@@ -68,9 +122,7 @@ const Tabs = ({
   const tabContent = {
     tab1: (
       <>
-        {searchTerm ? (
-          renderCardsOrMessage([...legoEducationData, ...qoboData, ...next20Data, ...microbitData, ...crowbitsData, ...crowtailsData, ...mojortData])
-        ) : (
+        {!searchTerm && selectedFilter === 'Todos' && (
           <>
             <Slider {...settings}>
               {carruselDataTab1.map((card, index) => (
@@ -79,64 +131,21 @@ const Tabs = ({
                 </div>
               ))}
             </Slider>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">LEGO EDUCATION</h2>
-            {renderLimitedCards(legoEducationData)}
-            <div className="flex justify-center my-8">
-              <Link to="/legoproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">QOBO</h2>
-            {renderLimitedCards(qoboData)}
-            <div className="flex justify-center my-8">
-              <Link to="/qoboproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">NEXT 2.0</h2>
-            {renderLimitedCards(next20Data)}
-            <div className="flex justify-center my-8">
-              <Link to="/next20productos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">MICROBIT</h2>
-            {renderLimitedCards(microbitData)}
-            <div className="flex justify-center my-8">
-              <Link to="/microbitproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">CROWBITS</h2>
-            {renderLimitedCards(crowbitsData)}
-            <div className="flex justify-center my-8">
-              <Link to="/crowbitsproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">CROWTAILS</h2>
-            {renderLimitedCards(crowtailsData)}
-            <div className="flex justify-center my-8">
-              <Link to="/crowtailsproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">MOJORT</h2>
-            {renderLimitedCards(mojortData)}
-            <div className="flex justify-center my-8">
-              <Link to="/mojortproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
           </>
         )}
+        {renderFilteredContent(legoEducationData, 'LEGO EDUCATION')}
+        {renderFilteredContent(qoboData, 'QOBO')}
+        {renderFilteredContent(next20Data, 'NEXT 2.0')}
+        {renderFilteredContent(microbitData, 'MICROBIT')}
+        {renderFilteredContent(crowbitsData, 'CROWBITS')}
+        {renderFilteredContent(crowtailsData, 'CROWTAILS')}
+        {renderFilteredContent(mojortData, 'MOJORT')}
       </>
     ),
+    
     tab2: (
       <>
-        {searchTerm ? (
-          renderCardsOrMessage([...dronesData, ...cohetebasicoData, ...coheteavanzadoData])
-        ) : (
+        {!searchTerm && selectedFilter === 'Todos' && (
           <>
             <Slider {...settings}>
               {carruselDataTab2.map((card, index) => (
@@ -145,36 +154,17 @@ const Tabs = ({
                 </div>
               ))}
             </Slider>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">DRONES</h2>
-            {renderLimitedCards(dronesData)}
-            <div className="flex justify-center my-8">
-              <Link to="/dronesproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">COHETES KIT BASICO</h2>
-            {renderLimitedCards(cohetebasicoData)}
-            <div className="flex justify-center my-8">
-              <Link to="/cohetebasicoproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">COHETES KIT AVANZADO</h2>
-            {renderLimitedCards(coheteavanzadoData)}
-            <div className="flex justify-center my-8">
-              <Link to="/coheteavanzadoproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
           </>
         )}
+        {renderFilteredContent(dronesData, 'DRONES')}
+        {renderFilteredContent(cohetebasicoData, 'COHETES KIT BASICO')}
+        {renderFilteredContent(coheteavanzadoData, 'COHETES KIT AVANZADO')}
       </>
     ),
+    
     tab3: (
       <>
-        {searchTerm ? (
-          renderCardsOrMessage([...visoresData, ...mergecubeData, ...kitmergeData])
-        ) : (
+        {!searchTerm && selectedFilter === 'Todos' && (
           <>
             <Slider {...settings}>
               {carruselDataTab3.map((card, index) => (
@@ -183,42 +173,40 @@ const Tabs = ({
                 </div>
               ))}
             </Slider>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">VISORES</h2>
-            {renderLimitedCards(visoresData)}
-            <div className="flex justify-center my-8">
-              <Link to="/visoresproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">MERGE CUBE</h2>
-            {renderLimitedCards(mergecubeData)}
-            <div className="flex justify-center my-8">
-              <Link to="/mergecubeproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
-            <h2 className="text-2xl font-bold mb-6 mt-8 text-left">KIT MERGE VISOR + MERGE CUBE</h2>
-            {renderLimitedCards(kitmergeData)}
-            <div className="flex justify-center my-8">
-              <Link to="/kitmergeproductos">
-                <button className="btn btn-outline btn-primary">Ver Mas</button>
-              </Link>
-            </div>
           </>
         )}
+        {renderFilteredContent(visoresData, 'VISORES')}
+        {renderFilteredContent(mergecubeData, 'MERGE CUBE')}
+        {renderFilteredContent(kitmergeData, 'KIT MERGE VISOR + MERGE CUBE')}
       </>
     ),
+  };
+
+  const renderTitle = () => {
+    if (searchTerm) {
+      return <h2 className="text-2xl font-bold mb-6 mt-4 text-left">Resultados Similares a: {searchTerm}</h2>;
+    } else if (selectedFilter !== 'Todos') {
+      return <h2 className="text-2xl font-bold mb-6 mt-4 text-left">{selectedFilter}</h2>;
+    } else {
+      return <h2 className="text-2xl font-bold mb-6 mt-4 text-left">Productos Nuevos</h2>;
+    }
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
-        <SearchBar searchTerm={searchTerm} handleSearchChange={handleSearchChange} />
+        <SearchBar 
+          searchTerm={searchTerm}
+          handleSearchChange={handleSearchChange}
+          activeTab={activeTab}
+          handleFilterChange={handleFilterChange}
+          selectedFilter={selectedFilter}
+        />
         <div className="flex-1 flex justify-center">
           <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-sm backdrop-saturate-50 p-1.5 rounded-full text-gray-900 shadow-md">
             <nav className="flex flex-col md:flex-row md:flex-nowrap">
               <button
-                onClick={() => setActiveTab('tab1')}
+                onClick={() => handleTabChange('tab1')}
                 className={`flex-auto py-3 px-4 text-sm rounded-full font-medium leading-snug tracking-wider uppercase transition ${
                   activeTab === 'tab1' ? 'text-white bg-blue-600' : 'text-gray-800 bg-gray-200'
                 }`}
@@ -226,7 +214,7 @@ const Tabs = ({
                 ROBOTICA
               </button>
               <button
-                onClick={() => setActiveTab('tab2')}
+                onClick={() => handleTabChange('tab2')}
                 className={`flex-auto py-3 px-4 text-sm rounded-full font-medium leading-snug tracking-wider uppercase transition ${
                   activeTab === 'tab2' ? 'text-white bg-blue-600' : 'text-gray-800 bg-gray-200'
                 }`}
@@ -234,7 +222,7 @@ const Tabs = ({
                 AERONAUTICA
               </button>
               <button
-                onClick={() => setActiveTab('tab3')}
+                onClick={() => handleTabChange('tab3')}
                 className={`flex-auto py-3 px-4 text-sm rounded-full font-medium leading-snug tracking-wider uppercase transition ${
                   activeTab === 'tab3' ? 'text-white bg-blue-600' : 'text-gray-800 bg-gray-200'
                 }`}
@@ -246,7 +234,7 @@ const Tabs = ({
         </div>
         <div className="w-1/4"></div>
       </div>
-      <h2 className="text-2xl font-bold mb-6 mt-4 text-left">Productos Nuevos</h2>
+      {renderTitle()}
       {tabContent[activeTab]}
     </div>
   );
