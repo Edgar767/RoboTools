@@ -1,12 +1,9 @@
-import { useEffect } from 'react';
 import Carrusel from '../Components/Carrusel';
 import image1 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel1.jpeg';
 import image2 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel2.jpeg';
 import image3 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel3.jpeg';
 import image4 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel4.jpeg';
 import image5 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel5.jpeg';
-import toolio from '../img/Imagenes_Inicio/toolio.png';
-import conocer from '../img/Imagenes_Inicio/conocer.png';
 import premio from '../img/Imagenes_Inicio/premio.png';
 import InicioCards from '../Components/InicioCards';
 import image11 from "../img/Imagenes_Inicio/Inicio_Cards/image11.jpeg";
@@ -52,85 +49,23 @@ const title2Texts = ['MENTES', 'CREATIVIDAD', 'DIVERSION'];
 
 const Inicio = () => {
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target); // Deja de observar el elemento una vez que se ha animado
-        }
-      });
-    }, { threshold: 0.5 });
-
-    const elements = document.querySelectorAll('.scroll-animation');
-    elements.forEach((element) => {
-      observer.observe(element);
-    });
-
-    return () => {
-      elements.forEach((element) => {
-        observer.unobserve(element);
-      });
-    };
-  }, []);
-
   return (
     <div>
-      <style>{`
-        .scroll-animation {
-          opacity: 0;
-          transform: translateY(50px);
-          transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-
-        .scroll-animation.in-view {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
-
       {/* Carrusel */}
       <div>
         <Carrusel images={images} title='DESARROLLANDO' title2Texts={title2Texts} />
       </div>
 
-      <div className="py-12 sm:py-16 lg:py-24 mt-24 scroll-animation">
-        <div className="flex justify-center">
-          <div className="bg-gradient-to-r from-indigo-400 to-cyan-400 sm:p-10 lg:p-20 rounded-3xl">
-            <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">¿QUIENES SOMOS?</h2>
-            <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">Somos una empresa 100% mexicana, dedicada a</p>
-            <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-yellow-300">PROPORCIONAR HERRAMIENTAS PEDAGÓGICAS E INNOVADORAS</p>
-            <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">que buscan motivar e incentivar a los niños a aprender.</p>
-            <div className="flex justify-center mt-6">
-              <img src={toolio} alt="toolio"></img>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="py-12 sm:py-16 lg:py-24 scroll-animation">
-        <div className="flex justify-center">
-          <div className="bg-gradient-to-r from-blue-600 to-violet-600 sm:p-10 lg:p-20 rounded-3xl">
-            <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">NUESTROS INSTRUCTORES</h2>
-            <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">Cada uno de Nuestros Instructores esta Certificado por el</p>
-            <div className="flex justify-center mt-6">
-              <img src={conocer} alt="conocer"></img>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* INICIO CURSOS */}
-      <div className="scroll-animation">
         <InicioCards
           title="Nuestros Cursos"
           description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
           cards={InicioCardsData}
         />
-      </div>
+
       {/* FIN CURSOS */}
 
-      <div className="py-12 sm:py-16 lg:py-24 scroll-animation">
+      <div className="py-12 sm:py-16 lg:py-24">
         <div className="flex justify-center">
           <div className="bg-gradient-to-r from-amber-500 to-pink-500 p-6 sm:p-10 lg:p-20 rounded-3xl">
             <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">RECONOCIMIENTOS</h2>
@@ -167,7 +102,7 @@ const Inicio = () => {
         </div>
       </div>
 
-      <div className="py-12 sm:py-16 lg:py-24 scroll-animation">
+      <div className="py-12 sm:py-16 lg:py-24">
         <div className="flex justify-center">
           <div className="bg-gradient-to-tr from-violet-500 to-orange-300 sm:p-10 lg:p-20 rounded-3xl">
             <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">MAS DE NOSOTROS</h2>

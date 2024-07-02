@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import toolio from '../img/Imagenes_Inicio/toolio.png';
+import conocer from '../img/Imagenes_Inicio/conocer.png';
 import Nosotros_1 from '../img/Imagenes_Nosotros/Nosotros_1.jpeg';
 import Nosotros_2 from '../img/Imagenes_Nosotros/Nosotros_2.jpeg';
 import Nosotros_3 from '../img/Imagenes_Nosotros/Nosotros_3.jpeg';
@@ -91,7 +93,31 @@ function Nosotros() {
   }, []);
 
   return (
-    <div>
+    <>
+         <div className="flex justify-center">
+            <div className="bg-gradient-to-r from-indigo-400 to-cyan-400 sm:p-10 lg:p-20 rounded-3xl">
+              <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">¿QUIENES SOMOS?</h2>
+                <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">Somos una empresa 100% mexicana, dedicada a</p>
+                <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-yellow-300">PROPORCIONAR HERRAMIENTAS PEDAGÓGICAS E INNOVADORAS</p>
+                <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">que buscan motivar e incentivar a los niños a aprender.</p>
+              <div className="flex justify-center mt-6">
+                <img src={toolio} alt="toolio"></img>
+              </div>
+            </div>
+          </div>
+
+          <div className="py-12 sm:py-16 lg:py-24 scroll-animation">
+        <div className="flex justify-center">
+          <div className="bg-gradient-to-r from-blue-600 to-violet-600 sm:p-10 lg:p-20 rounded-3xl">
+            <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">NUESTROS INSTRUCTORES</h2>
+            <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">Cada uno de Nuestros Instructores esta Certificado por el</p>
+            <div className="flex justify-center mt-6">
+              <img src={conocer} alt="conocer"></img>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Primera sección */}
       <section className="my-16 lg:my-24 animate-on-scroll">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 bg-red-200 rounded-2xl">
@@ -105,11 +131,12 @@ function Nosotros() {
             </div>
 
             <div className="lg:py-16">
-              <h2 className="text-3xl font-bold sm:text-4xl text-red-700">Fomenta la creatividad</h2>
+              <h2 className="text-3xl font-extrabold sm:text-4xl text-red-700">HISTORIA</h2>
 
               <p className="mt-4 text-gray-800">
-                Nuestros sets de Lego Education ayudan a los niños a desarrollar habilidades de creatividad,
-                resolución de problemas y colaboración mientras se divierten construyendo.
+                Somos una empresa con mas de 10 años de experiencia en la generacion de contenidos y
+                programas educativos enfocados a desarrollar competencias y habilidades STEAM en niñas y niños
+                mediante el uso de nuevas e innovadoras herramientas de aprendizaje.
               </p>
 
               <a
@@ -136,7 +163,7 @@ function Nosotros() {
             </div>
 
             <div className="lg:py-16">
-              <h2 className="text-3xl font-bold sm:text-4xl text-blue-700">Aprendizaje Interactivo</h2>
+              <h2 className="text-3xl font-extrabold sm:text-4xl text-blue-700">MISION</h2>
 
               <p className="mt-4 text-gray-800">
                 Con nuestros sets de Lego Education, los niños pueden aprender conceptos de ciencia,
@@ -167,7 +194,7 @@ function Nosotros() {
             </div>
 
             <div className="lg:py-16">
-              <h2 className="text-3xl font-bold sm:text-4xl text-green-700">Explora Nuevas Ideas</h2>
+              <h2 className="text-3xl font-extrabold sm:text-4xl text-green-700">VISION</h2>
 
               <p className="mt-4 text-gray-800">
                 Los sets de Lego Education permiten a los niños explorar nuevas ideas y conceptos mientras
@@ -184,7 +211,7 @@ function Nosotros() {
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
 }
 
