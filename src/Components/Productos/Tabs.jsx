@@ -35,7 +35,8 @@ const Tabs = ({
 
   useEffect(() => {
     localStorage.setItem('activeTab', activeTab);
-    setSelectedFilter('Todos'); //Reinicia el filtro cuando se cambia de pestaña
+    setSelectedFilter('Todos'); // Reinicia el filtro cuando se cambia de pestaña
+    setSearchTerm(''); // Reinicia la búsqueda cuando se cambia de pestaña
   }, [activeTab]);
 
   const handleSearchChange = (e) => {
@@ -48,8 +49,8 @@ const Tabs = ({
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    // Reinicia el filtro cuando se cambia de pestaña
-    setSelectedFilter('Todos');
+    setSelectedFilter('Todos'); // Reinicia el filtro
+    setSearchTerm(''); // Reinicia la búsqueda
   };
 
   const filteredCards = (cards) => 
