@@ -19,16 +19,18 @@ const Cards = ({ cards }) => {
         {cards.map((card, index) => (
           <div
             key={index}
-            className="col-span-1 p-4 bg-white rounded-lg shadow-md transition-transform transform hover:scale-105 cursor-pointer"
+            className="col-span-1 bg-white rounded-lg shadow-md transition-transform transform hover:scale-105 cursor-pointer overflow-hidden"
             onClick={() => handleCardClick(card)}
           >
             <img
               src={card.imageUrl}
               alt={`Photo of ${card.title}`}
-              className="w-full h-80 object-cover rounded-md mb-4"
+              className="w-full h-80 object-cover"
             />
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">{card.title}</h3>
-            <p className="text-gray-600">${card.price}</p>
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">{card.title}</h3>
+              <p className="text-gray-600">${card.price}</p>
+            </div>
           </div>
         ))}
       </div>
