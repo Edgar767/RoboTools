@@ -103,8 +103,13 @@ const ProgramasEscolares = () => {
       <h4 className="title color-variation-1 mt-8 mb-20 text-center text-4xl font-extrabold">NUESTROS PROGRAMAS INTEGRAN</h4>
 
       {/* Carrusel */}
-      <InfiniteCarrusel cards={InfiniteCarruselData} autoPause={true} />
-
+      <InfiniteCarrusel
+        cards={InfiniteCarruselData}
+        autoPause={true}
+        cardWidth={400} 
+        cardHeight={300}
+        speed={20}
+      />
 
       <InicioCards
           title='METODOLOGIAS DE NUESTROS PROGRAMAS'

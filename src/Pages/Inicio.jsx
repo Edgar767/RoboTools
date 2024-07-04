@@ -39,9 +39,9 @@ const InfiniteCarruselData = [
   { id: 1, image: "https://via.placeholder.com/400x300", title: "Salas Interactivas" },
   { id: 2, image: "https://via.placeholder.com/400x300", title: "Productos" },
   { id: 3, image: "https://via.placeholder.com/400x300", title: "Eventos" },
-  { id: 1, image: "https://via.placeholder.com/400x300", title: "Salas Interactivas" },
-  { id: 2, image: "https://via.placeholder.com/400x300", title: "Productos" },
-  { id: 3, image: "https://via.placeholder.com/400x300", title: "Eventos" },
+  { id: 4, image: "https://via.placeholder.com/400x300", title: "Salas Interactivas" },
+  { id: 5, image: "https://via.placeholder.com/400x300", title: "Productos" },
+  { id: 6, image: "https://via.placeholder.com/400x300", title: "Eventos" },
 ];
 
 const images = [image1, image2, image3, image4, image5];
@@ -103,15 +103,20 @@ const Inicio = () => {
       </div>
 
       <div className="py-12 sm:py-16 lg:py-24">
-        <div className="flex justify-center">
-          <div className="bg-gradient-to-tr from-violet-500 to-orange-300 sm:p-10 lg:p-20 rounded-3xl">
-            <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">MAS DE NOSOTROS</h2>
-            <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white"></p>
-            <div className="flex justify-center mt-6"></div>
-          </div>
-        </div>
+
       </div>
-      <InfiniteCarrusel cards={InfiniteCarruselData} autoPause={true} />
+        <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-200 to-blue-500 md:mb-6">
+          MAS DE NOSOTROS
+        </h2>
+
+        <InfiniteCarrusel
+        cards={InfiniteCarruselData}
+        autoPause={true}
+        cardWidth={400} 
+        cardHeight={300}
+        speed={20}
+        />
+
     </div>
   );
 };
