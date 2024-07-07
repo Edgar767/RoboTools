@@ -10,6 +10,7 @@ import image11 from "../img/Imagenes_Inicio/Inicio_Cards/image11.jpeg";
 import image22 from "../img/Imagenes_Inicio/Inicio_Cards/image22.jpeg";
 import image33 from "../img/Imagenes_Inicio/Inicio_Cards/image33.jpeg";
 import InfiniteCarrusel from '../Components/InfiniteCarrusel';
+import Testimonials from '../Components/Testimonials';
 
 const InicioCardsData = [
   {
@@ -36,12 +37,40 @@ const InicioCardsData = [
 ];
 
 const InfiniteCarruselData = [
-  { id: 1, image: "https://via.placeholder.com/400x300", title: "Salas Interactivas" },
-  { id: 2, image: "https://via.placeholder.com/400x300", title: "Productos" },
-  { id: 3, image: "https://via.placeholder.com/400x300", title: "Eventos" },
-  { id: 4, image: "https://via.placeholder.com/400x300", title: "Salas Interactivas" },
-  { id: 5, image: "https://via.placeholder.com/400x300", title: "Productos" },
-  { id: 6, image: "https://via.placeholder.com/400x300", title: "Eventos" },
+  { id: 1, image: "https://via.placeholder.com/400x300", title: "a" },
+  { id: 2, image: "https://via.placeholder.com/400x300", title: "b" },
+  { id: 3, image: "https://via.placeholder.com/400x300", title: "c" },
+  { id: 4, image: "https://via.placeholder.com/400x300", title: "d" },
+  { id: 5, image: "https://via.placeholder.com/400x300", title: "e" },
+  { id: 6, image: "https://via.placeholder.com/400x300", title: "f" },
+];
+
+const testimonialsData = [
+  {
+    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
+    image: 'https://images.unsplash.com/photo-1567515004624-219c11d31f2e?auto=format&q=75&fit=crop&w=112',
+    name: 'John McCulling',
+    title: 'CEO / Datadrift',
+  },
+  {
+    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
+    image: 'https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=112',
+    name: 'Kate Berg',
+    title: 'CFO / Dashdash',
+  },
+  {
+    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
+    image: 'https://images.unsplash.com/photo-1567515004624-219c11d31f2e?auto=format&q=75&fit=crop&w=112',
+    name: 'John McCulling 2',
+    title: 'CEO / Datadrift',
+  },
+  {
+    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
+    image: 'https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=112',
+    name: 'Kate Berg 2',
+    title: 'CFO / Dashdash',
+  },
+  // Agrega más testimonios aquí
 ];
 
 const images = [image1, image2, image3, image4, image5];
@@ -101,6 +130,10 @@ const Inicio = () => {
           </div>
         </div>
       </div>
+
+      {/*CARRUSEL DE OPINIONES*/}
+      <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">LO QUE DICEN NUESTROS ALUMNOS</h4>
+      <Testimonials testimonials={testimonialsData} />
 
       <div className="py-12 sm:py-16 lg:py-24">
 
