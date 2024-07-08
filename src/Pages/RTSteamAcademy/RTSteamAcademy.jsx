@@ -1,7 +1,7 @@
 import Prices from "../../Components/Prices";
 import Carrusel from "../../Components/Carrusel";
 
-const images = ['/img/prueba1.png', '/img/prueba2.png', '/img/prueba3.png', '/img/prueba4.png', '/img/prueba5.png'];
+const images = ['/img/Imagenes_RTSteam/prueba1.png', '/img/Imagenes_RTSteam/prueba2.png', '/img/Imagenes_RTSteam/prueba3.png', '/img/Imagenes_RTSteam/prueba4.png', '/img/Imagenes_RTSteam/prueba5.png'];
 
 const RTSteamAcademy = () => {
 
