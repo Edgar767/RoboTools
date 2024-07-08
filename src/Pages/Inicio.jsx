@@ -1,5 +1,4 @@
 import Carrusel from '../Components/Carrusel';
-import premio from '/img/Imagenes_Inicio/premio.png';
 import InicioCards from '../Components/InicioCards';
 import InfiniteCarrusel from '../Components/InfiniteCarrusel';
 import Testimonials from '../Components/Testimonials';
@@ -131,7 +130,7 @@ const Inicio = () => {
             <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">RECONOCIMIENTOS</h2>
             <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">NUESTROS ALUMNOS HAN GANADO IMPORTANTES COMPETENCIAS EN TECNOLOGÍA Y ROBÓTICA</p>
             <div className="flex justify-center mt-6">
-              <img src={premio} alt="premio" className="w-24 sm:w-32 lg:w-40 h-auto"></img>
+              <img src='/img/Imagenes_Inicio/premio.png' alt="premio" className="w-24 sm:w-32 lg:w-40 h-auto"></img>
             </div>
             <div className='flex justify-center items-center mt-10'>
               <button className="btn bg-gradient-to-r from-rose-100 to-teal-100 text-black font-bold" onClick={() => document.getElementById('my_modal_5').showModal()}>Ver Premios</button>
