@@ -3,6 +3,7 @@ import InicioCards from '../Components/InicioCards';
 import InfiniteCarrusel from '../Components/InfiniteCarrusel';
 import Testimonials from '../Components/Testimonials';
 import Infinito from '../Components/Infinito';
+import DobleCarrusel from '../Components/DobleCarrusel';
 
 const InicioCardsData = [
   {
@@ -101,7 +102,69 @@ const InfinitoData =[
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
   },
-]
+];
+
+const leftCards =[
+  {
+    title: "1",
+    desc: "1",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "2",
+    desc: "2",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "3",
+    desc: "3",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "4",
+    desc: "4",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+];
+
+const rightCards =[
+  {
+    title: "1",
+    desc: "1",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "2",
+    desc: "2",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "3",
+    desc: "3",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "4",
+    desc: "4",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+];
 
 const images = ['/img/Imagenes_Inicio/Carrusel_Inicio/carrusel1.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel2.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel3.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel4.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel5.jpeg'];
 const title2Texts = ['MENTES', 'CREATIVIDAD', 'DIVERSION'];
@@ -172,6 +235,13 @@ const Inicio = () => {
           MAS DE NOSOTROS
         </h2>
 
+        <DobleCarrusel 
+          leftTitle="Nuestros Servicios"
+          leftDescription=""
+          leftCards={leftCards}
+          rightCards={rightCards}
+        />
+
         <InfiniteCarrusel
         cards={InfiniteCarruselData}
         autoPause={true}
@@ -181,10 +251,9 @@ const Inicio = () => {
         />
 
         <Infinito
-      title="Título del Carrusel"
-      description="Descripción opcional del carrusel"
-      cards={InfinitoData}
-    />
+        title="Título del Carrusel"
+        cards={InfinitoData}
+        />
 
     </div>
   );
