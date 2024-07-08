@@ -1,16 +1,17 @@
 import Carrusel from '../Components/Carrusel';
-import image1 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel1.jpeg';
-import image2 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel2.jpeg';
-import image3 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel3.jpeg';
-import image4 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel4.jpeg';
-import image5 from '../img/Imagenes_Inicio/Carrusel_Inicio/carrusel5.jpeg';
-import premio from '../img/Imagenes_Inicio/premio.png';
+import image1 from '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel1.jpeg';
+import image2 from '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel2.jpeg';
+import image3 from '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel3.jpeg';
+import image4 from '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel4.jpeg';
+import image5 from '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel5.jpeg';
+import premio from '/img/Imagenes_Inicio/premio.png';
 import InicioCards from '../Components/InicioCards';
-import image11 from "../img/Imagenes_Inicio/Inicio_Cards/image11.jpeg";
-import image22 from "../img/Imagenes_Inicio/Inicio_Cards/image22.jpeg";
-import image33 from "../img/Imagenes_Inicio/Inicio_Cards/image33.jpeg";
+import image11 from "/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg";
+import image22 from "/img/Imagenes_Inicio/Inicio_Cards/image22.jpeg";
+import image33 from "/img/Imagenes_Inicio/Inicio_Cards/image33.jpeg";
 import InfiniteCarrusel from '../Components/InfiniteCarrusel';
 import Testimonials from '../Components/Testimonials';
+import Infinito from '../Components/Infinito';
 
 const InicioCardsData = [
   {
@@ -72,6 +73,44 @@ const testimonialsData = [
   },
   // Agrega más testimonios aquí
 ];
+
+const InfinitoData =[
+  {
+    title: "1",
+    desc: "1",
+    image: image11,
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "2",
+    desc: "2",
+    image: image11,
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "3",
+    desc: "3",
+    image: image11,
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "4",
+    desc: "4",
+    image: image11,
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "5",
+    desc: "5",
+    image: image11,
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+]
 
 const images = [image1, image2, image3, image4, image5];
 const title2Texts = ['MENTES', 'CREATIVIDAD', 'DIVERSION'];
@@ -149,6 +188,12 @@ const Inicio = () => {
         cardHeight={300}
         speed={20}
         />
+
+        <Infinito
+      title="Título del Carrusel"
+      description="Descripción opcional del carrusel"
+      cards={InfinitoData}
+    />
 
     </div>
   );
