@@ -1,7 +1,4 @@
 import { useEffect } from 'react';
-import Nosotros_1 from '/img/Imagenes_Nosotros/Nosotros_1.jpeg';
-import Nosotros_2 from '/img/Imagenes_Nosotros/Nosotros_2.jpeg';
-import Nosotros_3 from '/img/Imagenes_Nosotros/Nosotros_3.jpeg';
 
 function Nosotros() {
   useEffect(() => {
@@ -97,7 +94,7 @@ function Nosotros() {
             <div className="relative h-96 sm:h-96 lg:order-last lg:h-96">
               <img
                 alt="Niños jugando con Lego"
-                src={Nosotros_1}
+                src='/img/Imagenes_Nosotros/Nosotros_1.jpeg'
                 className="h-full w-full object-cover rounded-2xl image-zoom"
               />
             </div>
@@ -121,7 +118,7 @@ function Nosotros() {
             <div className="relative h-96 sm:h-96 lg:h-96">
               <img
                 alt="Set de Lego Education"
-                src={Nosotros_2}
+                src='/img/Imagenes_Nosotros/Nosotros_2.jpeg'
                 className="h-full w-full object-cover rounded-2xl image-zoom"
               />
             </div>
@@ -145,7 +142,7 @@ function Nosotros() {
             <div className="relative h-96 sm:h-96 lg:order-last lg:h-96">
               <img
                 alt="Niños jugando con Lego"
-                src={Nosotros_1}
+                src='/img/Imagenes_Nosotros/Nosotros_1.jpeg'
                 className="h-full w-full object-cover rounded-2xl image-zoom"
               />
             </div>
@@ -170,7 +167,7 @@ function Nosotros() {
             <div className="relative h-96 sm:h-96 lg:h-96">
               <img
                 alt="Set de Lego Education"
-                src={Nosotros_2}
+                src='/img/Imagenes_Nosotros/Nosotros_2.jpeg'
                 className="h-full w-full object-cover rounded-2xl image-zoom"
               />
             </div>
@@ -194,7 +191,7 @@ function Nosotros() {
             <div className="relative h-96 sm:h-96 lg:order-last lg:h-96">
               <img
                 alt="Niños construyendo con Lego"
-                src={Nosotros_3}
+                src='/img/Imagenes_Nosotros/Nosotros_2.jpeg'
                 className="h-full w-full object-cover rounded-2xl image-zoom"
               />
             </div>
