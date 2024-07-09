@@ -4,25 +4,27 @@ import InfiniteCarrusel from '../Components/InfiniteCarrusel';
 import Testimonials from '../Components/Testimonials';
 import Infinito from '../Components/Infinito';
 import DobleCarrusel from '../Components/DobleCarrusel';
+import Prices from '../Components/Prices';
+import { Link } from 'react-router-dom';
 
 const InicioCardsData = [
   {
     title: "PROGRAMAS ESCOLARES",
-    desc: "ECHALE UN OJO",
+    desc: "DALE UN VISTAZO",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
   },
   {
     title: "CURSOS ROBOTOOLS",
-    desc: "ECHALE UN OJO",
+    desc: "DALE UN VISTAZO",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image22.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/cursosrobotools",
   },
   {
     title: "RT STEAM ACADEMY",
-    desc: "ECHALE UN OJO",
+    desc: "DALE UN VISTAZO",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image33.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/rtsteamacademy",
@@ -68,36 +70,78 @@ const testimonialsData = [
 
 const InfinitoData =[
   {
-    title: "1",
-    desc: "1",
+    title: "Estatal Emprendedores Aguascalientes 2007",
+    desc: "1er Lugar Premio",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
   },
   {
-    title: "2",
-    desc: "2",
+    title: "World Robot Olympiad 2013.",
+    desc: "2do. Lugar categoría primaria en la competencia regional de la",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
   },
   {
-    title: "3",
-    desc: "3",
+    title: "World Robot Olympiad 2013.",
+    desc: "3er. Lugar en el Nacional categoría secundaria de",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
   },
   {
-    title: "4",
-    desc: "4",
+    title: "World Robot Olympiad, Regional Querétaro. Junio 2014.",
+    desc: "1er. Lugar en categoría Secundaria en competencia",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
   },
   {
-    title: "5",
-    desc: "5",
+    title: "World Robot Olympiad Nacional.",
+    desc: "5 Equipos: 2 de Secundaria y 3 de Primaria consiguen su pase a",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "World Robot Olympiad, regional Guadalajara 2015.",
+    desc: "2do. Lugar categoría Primario en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "First LEGO League en Estado de México 2013.",
+    desc: "Subcampeón en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "Gracious Professionalism en competencia First LEGO League en Estado de México 2013.",
+    desc: "Reconocimiento",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "Gracious Professionalism en competencia First LEGO League en Monterrey 2014.",
+    desc: "Reconocimiento",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "First LEGO League en Monterrey 2014.",
+    desc: "Reconocimiento a la mejor programación en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+    link: "/programasescolares",
+  },
+  {
+    title: "World Robot Olympiad, Regional Monterrey 2016.",
+    desc: "Segundo lugar en categoría primaria en competencia",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/programasescolares",
@@ -187,72 +231,50 @@ const Inicio = () => {
 
       {/* FIN CURSOS */}
 
-      <div className="py-12 sm:py-16 lg:py-24">
-        <div className="flex justify-center">
-          <div className="bg-gradient-to-r from-amber-500 to-pink-500 p-6 sm:p-10 lg:p-20 rounded-3xl">
-            <h2 className="mb-4 text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-white md:mb-6">RECONOCIMIENTOS</h2>
-            <p className="max-w-screen-md text-center text-sm sm:text-base lg:text-lg font-bold text-white">NUESTROS ALUMNOS HAN GANADO IMPORTANTES COMPETENCIAS EN TECNOLOGÍA Y ROBÓTICA</p>
-            <div className="flex justify-center mt-6">
-              <img src='/img/Imagenes_Inicio/premio.png' alt="premio" className="w-24 sm:w-32 lg:w-40 h-auto"></img>
-            </div>
-            <div className='flex justify-center items-center mt-10'>
-              <button className="btn bg-gradient-to-r from-rose-100 to-teal-100 text-black font-bold" onClick={() => document.getElementById('my_modal_5').showModal()}>Ver Premios</button>
-            </div>
-            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
-              <div className="modal-box">
-                <h3 className="text-center font-extrabold text-2xl">PREMIOS Y DISTINCIONES</h3>
-                <li><a>1er Lugar Premio</a> <a className='font-bold text-color-blue-500'>Estatal Emprendedores Aguascalientes 2007.</a></li>
-                <li><a>2do. Lugar categoría primaria en la competencia regional de la</a> <a className='font-bold text-color-blue-500'> World Robot Olympiad 2013.</a></li>
-                <li><a>3er. Lugar en el Nacional categoría secundaria de</a> <a className='font-bold text-color-blue-500'> World Robot Olympiad 2013.</a></li>
-                <li><a>1er. Lugar en categoría Secundaria en competencia</a> <a className='font-bold text-color-blue-500'> World Robot Olympiad, Regional Querétaro. Junio 2014.</a></li>
-                <li><a>5 Equipos: 2 de Secundaria y 3 de Primaria consiguen su pase a</a> <a className='font-bold text-color-blue-500'> World Robot Olympiad Nacional.</a></li>
-                <li><a>2do. Lugar categoría Primario en competencia</a> <a className='font-bold text-color-blue-500'> World Robot Olympiad, regional Guadalajara 2015.</a></li>
-                <li><a>Subcampeón en competencia</a> <a className='font-bold text-color-blue-500'> First LEGO League en Estado de México 2013.</a></li>
-                <li><a>Reconocimiento</a> <a className='font-bold text-color-blue-500'> Gracious Professionalism en competencia First LEGO League en Estado de México 2013.</a></li>
-                <li><a>Reconocimiento</a> <a className='font-bold text-color-blue-500'> Gracious Professionalism en competencia First LEGO League en Monterrey 2014.</a></li>
-                <li><a>Reconocimiento a la mejor programación en competencia</a> <a className='font-bold text-color-blue-500'> First LEGO League en Monterrey 2014.</a></li>
-                <li><a>Segundo lugar en categoría primaria en competencia</a> <a className='font-bold text-color-blue-500'> World Robot Olympiad, Regional Monterrey 2016.</a></li>
-                <div className="modal-action">
-                  <form method="dialog">
-                    {/* if there is a button in form, it will close the modal */}
-                    <button className="btn bg-gradient-to-r from-rose-100 to-teal-100 text-black font-bold">Cerrar</button>
-                  </form>
-                </div>
-              </div>
-            </dialog>
-          </div>
-        </div>
-      </div>
+      <Infinito
+        title="RECONOCIMIENTOS Y PREMIACIONES"
+        cards={InfinitoData}
+      />
 
       {/*CARRUSEL DE OPINIONES*/}
       <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">LO QUE DICEN NUESTROS ALUMNOS</h4>
       <Testimonials testimonials={testimonialsData} />
 
-      <div className="py-12 sm:py-16 lg:py-24">
-
-      </div>
-        <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-200 to-blue-500 md:mb-6">
-          MAS DE NOSOTROS
-        </h2>
-
         <DobleCarrusel 
-          leftTitle="Nuestros Servicios"
+          leftTitle="NUESTROS SERVICIOS"
           leftDescription=""
           leftCards={leftCards}
           rightCards={rightCards}
         />
 
-        <InfiniteCarrusel
-        cards={InfiniteCarruselData}
-        autoPause={true}
-        cardWidth={400} 
-        cardHeight={300}
-        speed={20}
-        />
+        <Prices />
 
-        <Infinito
-        title="Título del Carrusel"
-        cards={InfinitoData}
+        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">SIGUENOS EN NUESTRAS REDES SOCIALES</h4>
+
+        <div className="flex items-center">
+            <Link to="https://www.facebook.com/Robotools">
+              <img
+                className="h-10 w-auto md:h-12 lg:h-16 mr-2"
+                src="/icons/facebook.svg"
+              />
+            </Link>
+        </div>
+
+        <div className="flex items-center">
+            <Link to="https://www.instagram.com/robotools.rt/">
+              <img
+                className="h-10 w-auto md:h-12 lg:h-16 mr-2"
+                src="/icons/instagram.svg"
+              />
+            </Link>
+        </div>
+
+        <InfiniteCarrusel
+          cards={InfiniteCarruselData}
+          autoPause={true}
+          cardWidth={400} 
+          cardHeight={300}
+          speed={20}
         />
 
     </div>
