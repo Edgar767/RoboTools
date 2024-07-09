@@ -3,46 +3,46 @@ import PropTypes from "prop-types";
 import { motion, useAnimation } from "framer-motion";
 
 const Infinito = ({ title, description, cards }) => {
-  const [cardWidth, setCardWidth] = useState(300);
+  const [containerWidth, setContainerWidth] = useState(0);
   const carouselRef = useRef(null);
+  const containerRef = useRef(null);
   const controls = useAnimation();
   const [isHovered, setIsHovered] = useState(false);
-  const positionRef = useRef(0);
+  const progressRef = useRef(0);
 
   useEffect(() => {
-    const updateCardWidth = () => {
-      if (carouselRef.current) {
-        const firstCard = carouselRef.current.querySelector('.card');
-        if (firstCard) {
-          setCardWidth(firstCard.offsetWidth);
-        }
+    const updateWidths = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
       }
     };
 
-    updateCardWidth();
-    window.addEventListener('resize', updateCardWidth);
-    return () => window.removeEventListener('resize', updateCardWidth);
+    updateWidths();
+    window.addEventListener('resize', updateWidths);
+    return () => window.removeEventListener('resize', updateWidths);
   }, []);
 
-  const [cardsState] = useState([...cards, ...cards, ...cards]);
+  const cardWidth = containerWidth / 3; // Asumimos 3 tarjetas visibles en desktop
+  const totalWidth = cardWidth * cards.length;
 
   useEffect(() => {
     let animationFrame;
-    let lastTimestamp;
-    const totalWidth = cardWidth * cards.length;
     const duration = 70000; // 70 segundos para una rotación completa
+    let lastTimestamp;
 
     const animate = (timestamp) => {
       if (!lastTimestamp) lastTimestamp = timestamp;
       const deltaTime = timestamp - lastTimestamp;
-
-      if (!isHovered) {
-        positionRef.current += (deltaTime / duration) * totalWidth;
-        if (positionRef.current >= totalWidth) {
-          positionRef.current -= totalWidth;
+      
+      if (!isHovered && containerWidth > 0) {
+        progressRef.current += deltaTime / duration;
+        if (progressRef.current >= 1) {
+          progressRef.current -= 1;
         }
-        controls.set({ x: -positionRef.current });
+        const x = -(progressRef.current * totalWidth);
+        controls.set({ x });
       }
+      
       lastTimestamp = timestamp;
       animationFrame = requestAnimationFrame(animate);
     };
@@ -54,37 +54,41 @@ const Infinito = ({ title, description, cards }) => {
         cancelAnimationFrame(animationFrame);
       }
     };
-  }, [cardWidth, cards.length, controls, isHovered]);
+  }, [controls, isHovered, containerWidth, totalWidth]);
+
+  const [cardsState] = useState([...cards, ...cards, ...cards]);
 
   return (
     <div className="py-12 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div className="mb-10 md:mb-16">
-          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 md:mb-6">{title}</h2>
+          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 md:mb-6">{title}</h2>
           {description && (
             <p className="mx-auto max-w-screen-md text-center text-sm sm:text-base md:text-lg text-gray-500">{description}</p>
           )}
         </div>
 
         <div 
+          ref={containerRef}
           className="relative overflow-hidden"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Fade effect on the left */}
           <div className="absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-[rgb(243,244,246)] to-transparent"></div>
           
           <motion.div
             ref={carouselRef}
             className="flex"
             animate={controls}
+            style={{ width: `${totalWidth * 3}px` }}
           >
             {cardsState.map((card, index) => (
-              <motion.div
+              <div
                 key={`${card.title}-${index}`}
-                className="card min-w-[300px] md:min-w-[400px] h-64 sm:h-72 lg:h-96 p-2 md:p-4"
+                className="card w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 flex-grow-0 px-3"
+                style={{ width: `${cardWidth}px` }}
               >
-                <a href={card.link} className="group relative flex h-full items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+                <a href={card.link} className="group relative flex h-64 sm:h-72 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg">
                   <div className="absolute inset-0">
                     <img 
                       src={card.image} 
@@ -101,11 +105,10 @@ const Infinito = ({ title, description, cards }) => {
                     <span className="text-base sm:text-lg md:text-xl font-bold text-white">{card.title}</span>
                   </div>
                 </a>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
 
-          {/* Fade effect on the right */}
           <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-[rgb(243,244,246)] to-transparent"></div>
         </div>
       </div>
