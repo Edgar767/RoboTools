@@ -150,7 +150,7 @@ const DobleCarrusel = ({ leftTitle, leftDescription, leftCards, rightTitle, righ
 };
 
 DobleCarrusel.propTypes = {
-  leftTitle: PropTypes.string.isRequired,
+  leftTitle: PropTypes.string,
   leftDescription: PropTypes.string,
   leftCards: PropTypes.arrayOf(
     PropTypes.shape({
@@ -161,7 +161,7 @@ DobleCarrusel.propTypes = {
       link: PropTypes.string.isRequired,
     })
   ).isRequired,
-  rightTitle: PropTypes.string.isRequired,
+  rightTitle: PropTypes.string,
   rightDescription: PropTypes.string,
   rightCards: PropTypes.arrayOf(
     PropTypes.shape({
