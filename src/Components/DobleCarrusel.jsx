@@ -76,7 +76,7 @@ const VerticalCarrusel = ({ cards, direction }) => {
         {cardsState.map((card, index) => (
           <motion.div
             key={`${card.title}-${index}`}
-            className="card w-[400px] h-[400px] md:w-[500px] md:h-[500px] p-4" // Tarjetas cuadradas y más grandes
+            className="card w-[400px] h-[400px] md:w-[500px] md:h-[500px] p-2" // Tarjetas cuadradas y más grandes
           >
             <a href={card.link} className="group relative flex h-full items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg">
               <div className="absolute inset-0">
@@ -129,11 +129,11 @@ const DobleCarrusel = ({ leftTitle, leftDescription, leftCards, rightTitle, righ
           )}
         </div>
 
-        <div className="flex justify-between space-x-4">
-          <div className="w-1/2">
+        <div className="flex justify-center space-x-4">
+          <div className="w-1/2 max-w-lg">
             <VerticalCarrusel cards={leftCards} direction="down" />
           </div>
-          <div className="w-1/2">
+          <div className="w-1/2 max-w-lg">
             <VerticalCarrusel cards={rightCards} direction="up" />
           </div>
         </div>
