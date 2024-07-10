@@ -251,23 +251,25 @@ const Inicio = () => {
 
         <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">SIGUENOS EN NUESTRAS REDES SOCIALES</h4>
 
-        <div className="flex items-center">
+    <div className="flex items-center justify-center">
+        <div className="flex items-center mr-5">
             <Link to="https://www.facebook.com/Robotools">
               <img
-                className="h-10 w-auto md:h-12 lg:h-16 mr-2"
+                className="h-10 w-10 md:h-12 lg:h-16 mr-2"
                 src="/icons/facebook.svg"
               />
             </Link>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center mr-5">
             <Link to="https://www.instagram.com/robotools.rt/">
               <img
-                className="h-10 w-auto md:h-12 lg:h-16 mr-2"
+                className="h-10 w-10 md:h-12 lg:h-16 mr-2"
                 src="/icons/instagram.svg"
               />
             </Link>
         </div>
+    </div>
 
         <InfiniteCarrusel
           cards={InfiniteCarruselData} autoPause={true}
