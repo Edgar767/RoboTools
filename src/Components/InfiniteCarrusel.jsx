@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const InfiniteCarousel = ({ cards, autoPause = true }) => {
+const InfiniteCarrusel = ({ cards, autoPause = true }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -136,7 +136,7 @@ const InfiniteCarousel = ({ cards, autoPause = true }) => {
   );
 };
 
-InfiniteCarousel.propTypes = {
+InfiniteCarrusel.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
@@ -145,4 +145,4 @@ InfiniteCarousel.propTypes = {
   autoPause: PropTypes.bool,
 };
 
-export default InfiniteCarousel;
+export default InfiniteCarrusel;
