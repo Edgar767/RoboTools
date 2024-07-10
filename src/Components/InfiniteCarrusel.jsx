@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const InfiniteCarrusel = ({ cards, autoPause = true, cardWidth = 400, cardHeight = 300, speed = 40 }) => {
+const InfiniteCarousel = ({ cards, autoPause = true }) => {
   const [isPaused, setIsPaused] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -20,8 +20,8 @@ const InfiniteCarrusel = ({ cards, autoPause = true, cardWidth = 400, cardHeight
 
       .slide-track {
         display: flex;
-        width: calc(${cardWidth}px * ${cards.length});
-        animation: scroll ${speed}s linear infinite;
+        width: calc(400px * ${cards.length});
+        animation: scroll 20s linear infinite;
       }
 
       @keyframes scroll {
@@ -29,14 +29,14 @@ const InfiniteCarrusel = ({ cards, autoPause = true, cardWidth = 400, cardHeight
           transform: translateX(0);
         }
         100% {
-          transform: translateX(calc(-${cardWidth}px * ${cards.length / 2}));
+          transform: translateX(calc(-400px * ${cards.length / 2}));
         }
       }
 
       .slide {
         flex: 0 0 auto;
-        width: ${cardWidth}px;
-        height: ${cardHeight}px;
+        width: 400px;
+        height: 300px;
         margin-right: 10px;
         border: 0;
         box-sizing: border-box;
@@ -107,7 +107,7 @@ const InfiniteCarrusel = ({ cards, autoPause = true, cardWidth = 400, cardHeight
     return () => {
       document.head.removeChild(style);
     };
-  }, [cards.length, cardWidth, cardHeight, speed]);
+  }, [cards.length]);
 
   const repeatedCards = [...cards, ...cards];
 
@@ -136,16 +136,13 @@ const InfiniteCarrusel = ({ cards, autoPause = true, cardWidth = 400, cardHeight
   );
 };
 
-InfiniteCarrusel.propTypes = {
+InfiniteCarousel.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })).isRequired,
   autoPause: PropTypes.bool,
-  cardWidth: PropTypes.number,
-  cardHeight: PropTypes.number,
-  speed: PropTypes.number,
 };
 
-export default InfiniteCarrusel;
+export default InfiniteCarousel;

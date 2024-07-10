@@ -270,11 +270,7 @@ const Inicio = () => {
         </div>
 
         <InfiniteCarrusel
-          cards={InfiniteCarruselData}
-          autoPause={true}
-          cardWidth={400} 
-          cardHeight={300}
-          speed={20}
+          cards={InfiniteCarruselData} autoPause={true}
         />
 
     </div>
