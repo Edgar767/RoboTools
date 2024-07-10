@@ -72,8 +72,8 @@ const Carrusel = ({ images, title, title2Texts }) => {
 
 Carrusel.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  title: PropTypes.string.isRequired,
-  title2Texts: PropTypes.arrayOf(PropTypes.string).isRequired,
+  title: PropTypes.string,
+  title2Texts: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default Carrusel;
