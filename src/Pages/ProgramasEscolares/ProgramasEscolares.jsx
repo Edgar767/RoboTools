@@ -105,10 +105,6 @@ const ProgramasEscolares = () => {
       {/* Carrusel */}
       <InfiniteCarrusel
         cards={InfiniteCarruselData}
-        autoPause={true}
-        cardWidth={400} 
-        cardHeight={300}
-        speed={20}
       />
 
       <InicioCards
