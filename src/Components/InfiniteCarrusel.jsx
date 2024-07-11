@@ -1,12 +1,67 @@
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { motion, useAnimation } from "framer-motion";
 
 const InfiniteCarrusel = ({ cards }) => {
   const [selectedCard, setSelectedCard] = useState(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const carouselRef = useRef(null);
+  const containerRef = useRef(null);
+  const controls = useAnimation();
+  const [isHovered, setIsHovered] = useState(false);
+  const progressRef = useRef(0);
 
   const handleCardHover = (id) => {
     setSelectedCard(id);
   };
+
+  useEffect(() => {
+    const updateWidths = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
+      }
+    };
+
+    updateWidths();
+    window.addEventListener('resize', updateWidths);
+    return () => window.removeEventListener('resize', updateWidths);
+  }, []);
+
+  const cardWidth = 400; // Ancho fijo de la tarjeta
+  const totalWidth = cardWidth * cards.length;
+
+  useEffect(() => {
+    let animationFrame;
+    const duration = 70000; // 70 segundos para una rotación completa
+    let lastTimestamp;
+
+    const animate = (timestamp) => {
+      if (!lastTimestamp) lastTimestamp = timestamp;
+      const deltaTime = timestamp - lastTimestamp;
+      
+      if (!isHovered && containerWidth > 0) {
+        progressRef.current += deltaTime / duration;
+        if (progressRef.current >= 1) {
+          progressRef.current -= 1;
+        }
+        const x = -(progressRef.current * totalWidth);
+        controls.set({ x });
+      }
+      
+      lastTimestamp = timestamp;
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [controls, isHovered, containerWidth, totalWidth]);
+
+  const [cardsState] = useState([...cards, ...cards, ...cards]);
 
   const cardStyles = `
     .cards {
@@ -77,19 +132,34 @@ const InfiniteCarrusel = ({ cards }) => {
   return (
     <>
       <style>{cardStyles}</style>
-      {cards.map((card) => (
-        <div
-          className={`cards ${selectedCard !== null && selectedCard !== card.id ? 'blur-hover' : ''}`}
-          key={card.id}
-          onMouseEnter={() => handleCardHover(card.id)}
-          onMouseLeave={() => handleCardHover(null)}
+      <div 
+        ref={containerRef}
+        className="relative overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <motion.div
+          ref={carouselRef}
+          className="flex"
+          animate={controls}
+          style={{ width: `${totalWidth * 3}px` }}
         >
-          <img src={card.image} alt={card.title} />
-          <div className="cards-content">
-            <h3 className="cards-title">{card.title}</h3>
-          </div>
-        </div>
-      ))}
+          {cardsState.map((card, index) => (
+            <div
+              className={`cards ${selectedCard !== null && selectedCard !== card.id ? 'blur-hover' : ''}`}
+              key={`${card.id}-${index}`}
+              onMouseEnter={() => handleCardHover(card.id)}
+              onMouseLeave={() => handleCardHover(null)}
+              style={{ width: `${cardWidth}px`, flexShrink: 0 }}
+            >
+              <img src={card.image} alt={card.title} />
+              <div className="cards-content">
+                <h3 className="cards-title">{card.title}</h3>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </>
   );
 };
