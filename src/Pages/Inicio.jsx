@@ -241,7 +241,7 @@ const Inicio = () => {
       <Testimonials testimonials={testimonialsData} />
 
         <DobleCarrusel 
-          leftTitle="NUESTROS SERVICIOS"
+          leftTitle="NUESTROS SERVICIOS (GALERIA)"
           leftDescription=""
           leftCards={leftCards}
           rightCards={rightCards}
