@@ -61,7 +61,7 @@ const VerticalCarrusel = ({ cards, direction }) => {
 
   return (
     <div 
-      className="relative overflow-hidden h-[800px] flex justify-center items-center" // Altura para mostrar 2 tarjetas simultáneamente
+      className="relative overflow-hidden h-[600px] flex justify-center items-center" // Reducir la altura del contenedor
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -123,7 +123,7 @@ const DobleCarrusel = ({ leftTitle, leftDescription, leftCards, rightTitle, righ
     <div className="py-12 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div className="mb-10 md:mb-16">
-          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 md:mb-6">{leftTitle}</h2>
+          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 md:mb-6">{leftTitle}</h2>
           {leftDescription && (
             <p className="mx-auto max-w-screen-md text-center text-sm sm:text-base md:text-lg text-gray-500">{leftDescription}</p>
           )}
