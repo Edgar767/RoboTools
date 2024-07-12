@@ -5,7 +5,7 @@ const InicioCards = ({ title, description, cards }) => {
     <div className="py-12 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <div className="mb-10 md:mb-16">
-          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 md:mb-6">{title}</h2>
+          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 md:mb-6">{title}</h2>
           {description && (
             <p className="mx-auto max-w-screen-md text-center text-sm sm:text-base md:text-lg text-gray-500">{description}</p>
           )}
