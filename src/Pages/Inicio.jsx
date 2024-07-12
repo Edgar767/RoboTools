@@ -6,6 +6,7 @@ import Infinito from '../Components/Infinito';
 import DobleCarrusel from '../Components/DobleCarrusel';
 import Prices from '../Components/Prices';
 import { Link } from 'react-router-dom';
+import Floating from '../Components/Animation/Floating';
 
 const InicioCardsData = [
   {
@@ -271,9 +272,59 @@ const Inicio = () => {
         </div>
     </div>
 
-        <InfiniteCarrusel
-          cards={InfiniteCarruselData}
-        />
+    <div className="relative">
+        <Floating duration={4} y={20} zIndex={19} style={{ bottom: '30px', left: '-40px' }}>
+          <img 
+            src="/extras/lego1.png" 
+            alt="Floating image 1" 
+            className="w-auto h-40 object-cover"
+          />
+        </Floating>
+        
+        <Floating duration={2} y={15} zIndex={20} style={{ bottom: '-10px', left: '100px' }}>
+          <img 
+            src="/extras/lego2.png" 
+            alt="Floating image 2" 
+            className="w-auto h-64 object-cover"
+          />
+        </Floating>
+
+        <Floating duration={3} y={10} zIndex={18} style={{ bottom: '-20px', left: '250px' }}>
+          <img 
+            src="/extras/lego3.png" 
+            alt="Floating image 2" 
+            className="w-auto h-40 object-cover"
+          />
+        </Floating>
+        {/*DERECHA*/}
+        <Floating duration={5} y={10} zIndex={18} style={{ bottom: '-20px', right: '100px' }}>
+          <img 
+            src="/extras/lego4.png" 
+            alt="Floating image 2" 
+            className="w-auto h-40 object-cover"
+          />
+        </Floating>
+
+        <Floating duration={3} y={10} zIndex={19} style={{ bottom: '-20px', right: '200px' }}>
+          <img 
+            src="/extras/lego5.png" 
+            alt="Floating image 2" 
+            className="w-auto h-64 object-cover"
+          />
+        </Floating>
+
+        <Floating duration={2} y={10} zIndex={17} style={{ bottom: '50px', right: '5px' }}>
+          <img 
+            src="/extras/lego6.png" 
+            alt="Floating image 2" 
+            className="w-auto h-40 object-cover"
+          />
+        </Floating>
+    </div>
+
+    <InfiniteCarrusel
+      cards={InfiniteCarruselData}
+    />
 
     </div>
   );
