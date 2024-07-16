@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import InicioCards from '../../Components/InicioCards';
 import { AcademicCapIcon } from "@heroicons/react/24/solid";
 import InfiniteCarrusel from "../../Components/InfiniteCarrusel";
+import Floating from '../../Components/Animation/Floating';
 
 const CardsData = [
   {
@@ -69,7 +70,9 @@ const ProgramasEscolares = () => {
     `btn ${activeButton === path ? 'btn-active' : 'btn-variation-1'}`;
 
   return (
-    <div>
+    <div className="relative min-h-screen">
+      <Floating />
+      <div className="relative z-10">
       <div className="flex justify-center space-x-4 mt-8 mb-4">
         <Link to="/preescolar">
           <button 
@@ -116,6 +119,7 @@ const ProgramasEscolares = () => {
           title="ELEMENTOS DE NUESTROS CURSOS"
           cards={CardsData2}
       />
+    </div>
     </div>
   );
 };

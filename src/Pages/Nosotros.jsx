@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Floating from '../Components/Animation/Floating';
 
 function Nosotros() {
   useEffect(() => {
@@ -86,7 +87,9 @@ function Nosotros() {
   }, []);
 
   return (
-    <>
+    <div className="relative min-h-screen">
+    <Floating />
+    <div className="relative z-10">
       {/* Duplicando la sección de HISTORIA */}
       <section className="my-16 lg:my-24 animate-on-scroll">
         <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 bg-red-200 rounded-2xl">
@@ -207,7 +210,8 @@ function Nosotros() {
           </div>
         </div>
       </section>
-    </>
+    </div>
+  </div>
   );
 }
 

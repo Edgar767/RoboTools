@@ -1,4 +1,5 @@
 import InicioCards from "../../Components/InicioCards";
+import Floating from '../../Components/Animation/Floating';
 
 const InicioCardsData = [
   {
@@ -40,6 +41,9 @@ const InicioCardsData = [
 
 const CursosRobotools = () => {
   return (
+    <div className="relative min-h-screen">
+      <Floating />
+      <div className="relative z-10">
     <div className="mt-8"> {/* Agrega margen superior a la página */}
       
       {/* Carrusel */}
@@ -62,6 +66,8 @@ const CursosRobotools = () => {
           description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
           cards={InicioCardsData}
         />
+    </div>
+    </div>
     </div>
   );
 };

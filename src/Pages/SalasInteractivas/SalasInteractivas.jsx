@@ -3,6 +3,8 @@ import PostsDouble from '../../Components/ProgramasEscolares/PostsDouble';
 import FullContentModal from '../../Components/FullContentModal';
 import Ingenius from './Ingenius';
 import Sensoria from './Sensoria';
+import Floating from '../../Components/Animation/Floating';
+
 
 const DoubleData = [
   {
@@ -46,6 +48,9 @@ const SalasInteractivas = () => {
     const closeModal = () => setModalContent(null);
 
     return (
+        <div className="relative min-h-screen">
+      <Floating />
+      <div className="relative z-10">
         <>
             <PostsDouble
                 title="SALAS INTERACTIVAS"
@@ -59,6 +64,8 @@ const SalasInteractivas = () => {
                 content={modalContent}
             />
         </>
+        </div>
+        </div>
     );
 };
 
