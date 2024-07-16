@@ -12,6 +12,13 @@ const Floating = () => {
     '/extras/lego4.png',
     '/extras/lego5.png',
     '/extras/lego6.png',
+
+    '/extras/lego1.png',
+    '/extras/lego2.png',
+    '/extras/lego3.png',
+    '/extras/lego4.png',
+    '/extras/lego5.png',
+    '/extras/lego6.png',
     // Agrega más imágenes según sea necesario
   ];
 
