@@ -215,32 +215,31 @@ const images = ['/img/Imagenes_Inicio/Carrusel_Inicio/carrusel1.jpeg', '/img/Ima
 const title2Texts = ['MENTES', 'CREATIVIDAD', 'DIVERSION'];
 
 const Inicio = () => {
-
   return (
-    <div>
-      {/* Carrusel */}
-      <div>
-        <Carrusel images={images} title='DESARROLLANDO' title2Texts={title2Texts} />
-      </div>
-
+    <div className="relative min-h-screen">
       <Floating />
+      <div className="relative z-10">
+        {/* Carrusel */}
+        <div>
+          <Carrusel images={images} title='DESARROLLANDO' title2Texts={title2Texts} />
+        </div>
 
-      {/* INICIO CURSOS */}
+        {/* INICIO CURSOS */}
         <InicioCards
           title="Nuestros Cursos"
           description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
           cards={InicioCardsData}
         />
-      {/* FIN CURSOS */}
+        {/* FIN CURSOS */}
 
-      <Infinito
-        title="RECONOCIMIENTOS Y PREMIACIONES"
-        cards={InfinitoData}
-      />
+        <Infinito
+          title="RECONOCIMIENTOS Y PREMIACIONES"
+          cards={InfinitoData}
+        />
 
-      {/*CARRUSEL DE OPINIONES*/}
-      <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">LO QUE DICEN NUESTROS ALUMNOS</h4>
-      <Testimonials testimonials={testimonialsData} />
+        {/*CARRUSEL DE OPINIONES*/}
+        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">LO QUE DICEN NUESTROS ALUMNOS</h4>
+        <Testimonials testimonials={testimonialsData} />
 
         <DobleCarrusel 
           leftTitle="NUESTROS SERVICIOS (GALERIA)"
@@ -253,30 +252,30 @@ const Inicio = () => {
 
         <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">SIGUENOS EN NUESTRAS REDES SOCIALES</h4>
 
-    <div className="flex items-center justify-center">
-        <div className="flex items-center mr-5">
+        <div className="flex items-center justify-center">
+          <div className="flex items-center mr-5">
             <Link to="https://www.facebook.com/Robotools">
               <img
                 className="h-10 w-10 md:h-12 lg:h-16 mr-2"
                 src="/icons/facebook.svg"
               />
             </Link>
-        </div>
+          </div>
 
-        <div className="flex items-center mr-5">
+          <div className="flex items-center mr-5">
             <Link to="https://www.instagram.com/robotools.rt/">
               <img
                 className="h-10 w-10 md:h-12 lg:h-16 mr-2"
                 src="/icons/instagram.svg"
               />
             </Link>
+          </div>
         </div>
-    </div>
 
-    <InfiniteCarrusel
-      cards={InfiniteCarruselData}
-    />
-
+        <InfiniteCarrusel
+          cards={InfiniteCarruselData}
+        />
+      </div>
     </div>
   );
 };
