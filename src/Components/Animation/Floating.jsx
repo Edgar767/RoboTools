@@ -12,17 +12,16 @@ const Floating = () => {
     '/extras/lego4.png',
     '/extras/lego5.png',
     '/extras/lego6.png',
-
     '/extras/lego1.png',
     '/extras/lego2.png',
     '/extras/lego3.png',
     '/extras/lego4.png',
     '/extras/lego5.png',
     '/extras/lego6.png',
-    // Agrega más imágenes según sea necesario
   ];
 
-  const imageSize = 96; // Tamaño de la imagen en píxeles (24 * 4 para tener en cuenta el padding)
+  const imageSize = 96;
+  const mouseInteractionRadius = 100;
 
   const initializePositions = useCallback(() => {
     return images.map(() => ({
@@ -64,21 +63,19 @@ const Floating = () => {
     const dy = pos2.y - pos1.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (distance === 0) return; // Evitar división por cero
+    if (distance === 0) return;
 
     const nx = dx / distance;
     const ny = dy / distance;
 
     const p = 2 * (pos1.vx * nx + pos1.vy * ny - pos2.vx * nx - pos2.vy * ny) / 2;
 
-    // Añadir una pequeña perturbación aleatoria
     const perturbation = 0.1;
     pos1.vx = (pos1.vx - p * nx) + (Math.random() - 0.5) * perturbation;
     pos1.vy = (pos1.vy - p * ny) + (Math.random() - 0.5) * perturbation;
     pos2.vx = (pos2.vx + p * nx) + (Math.random() - 0.5) * perturbation;
     pos2.vy = (pos2.vy + p * ny) + (Math.random() - 0.5) * perturbation;
 
-    // Separar físicamente las imágenes
     const overlap = imageSize - distance;
     if (overlap > 0) {
       pos1.x -= overlap * nx / 2;
@@ -87,10 +84,28 @@ const Floating = () => {
       pos2.y += overlap * ny / 2;
     }
 
-    // Actualizar el tiempo de la última colisión
     const now = Date.now();
     pos1.lastCollisionTime = now;
     pos2.lastCollisionTime = now;
+  };
+
+  const handleMouseInteraction = (pos) => {
+    const dx = pos.x + imageSize / 2 - mousePos.current.x;
+    const dy = pos.y + imageSize / 2 - mousePos.current.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < mouseInteractionRadius) {
+      const factor = 1 - distance / mouseInteractionRadius;
+      pos.vx += (dx / distance) * factor * 0.5;
+      pos.vy += (dy / distance) * factor * 0.5;
+      pos.currentSpeed = pos.baseSpeed * (1 + factor * 2);
+      pos.interactionTimer = 60;
+    } else if (pos.interactionTimer > 0) {
+      pos.interactionTimer--;
+      if (pos.interactionTimer === 0) {
+        pos.currentSpeed = pos.baseSpeed;
+      }
+    }
   };
 
   useAnimationFrame(() => {
@@ -98,21 +113,7 @@ const Floating = () => {
       const newPositions = prevPositions.map((pos) => {
         let { x, y, vx, vy, rotate, rotateSpeed, baseSpeed, currentSpeed, interactionTimer, lastCollisionTime } = pos;
 
-        const dx = x - mousePos.current.x;
-        const dy = y - mousePos.current.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 100 && interactionTimer === 0) {
-          currentSpeed = baseSpeed * 3;
-          vx += (dx / distance) * 0.5;
-          vy += (dy / distance) * 0.5;
-          interactionTimer = 60;
-        } else if (interactionTimer > 0) {
-          interactionTimer--;
-          if (interactionTimer === 0) {
-            currentSpeed = baseSpeed;
-          }
-        }
+        handleMouseInteraction(pos);
 
         x += vx * (currentSpeed / baseSpeed);
         y += vy * (currentSpeed / baseSpeed);
@@ -127,9 +128,8 @@ const Floating = () => {
           y = Math.max(0, Math.min(y, window.innerHeight - imageSize));
         }
 
-        // Aplicar una pequeña fuerza para separar imágenes que han estado en contacto por mucho tiempo
         const now = Date.now();
-        if (now - lastCollisionTime > 2000) { // 2 segundos
+        if (now - lastCollisionTime > 2000) {
           vx += (Math.random() - 0.5) * 0.1;
           vy += (Math.random() - 0.5) * 0.1;
         }
@@ -137,7 +137,6 @@ const Floating = () => {
         return { x, y, vx, vy, rotate, rotateSpeed, baseSpeed, currentSpeed, interactionTimer, lastCollisionTime };
       });
 
-      // Comprobar y resolver colisiones
       for (let i = 0; i < newPositions.length; i++) {
         for (let j = i + 1; j < newPositions.length; j++) {
           if (checkCollision(newPositions[i], newPositions[j])) {
