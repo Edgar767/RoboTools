@@ -20,13 +20,19 @@ const Floating = () => {
     '/extras/lego6.png',
   ];
 
-  const imageSize = 96;
+  const imageSize = {
+    base: 64,  // Default size for small screens
+    sm: 72,
+    md: 80,
+    lg: 96,
+    xl: 112,
+  };
   const mouseInteractionRadius = 100;
 
   const initializePositions = useCallback(() => {
     return images.map(() => ({
-      x: Math.random() * (window.innerWidth - imageSize),
-      y: Math.random() * (window.innerHeight - imageSize),
+      x: Math.random() * (window.innerWidth - imageSize.lg),
+      y: Math.random() * (window.innerHeight - imageSize.lg),
       vx: (Math.random() - 0.5) * 2,
       vy: (Math.random() - 0.5) * 2,
       rotate: Math.random() * 360,
@@ -55,7 +61,7 @@ const Floating = () => {
     const dx = pos1.x - pos2.x;
     const dy = pos1.y - pos2.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
-    return distance < imageSize;
+    return distance < imageSize.lg;
   };
 
   const resolveCollision = (pos1, pos2) => {
@@ -76,7 +82,7 @@ const Floating = () => {
     pos2.vx = (pos2.vx + p * nx) + (Math.random() - 0.5) * perturbation;
     pos2.vy = (pos2.vy + p * ny) + (Math.random() - 0.5) * perturbation;
 
-    const overlap = imageSize - distance;
+    const overlap = imageSize.lg - distance;
     if (overlap > 0) {
       pos1.x -= overlap * nx / 2;
       pos1.y -= overlap * ny / 2;
@@ -90,8 +96,8 @@ const Floating = () => {
   };
 
   const handleMouseInteraction = (pos) => {
-    const dx = pos.x + imageSize / 2 - mousePos.current.x;
-    const dy = pos.y + imageSize / 2 - mousePos.current.y;
+    const dx = pos.x + imageSize.lg / 2 - mousePos.current.x;
+    const dy = pos.y + imageSize.lg / 2 - mousePos.current.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     if (distance < mouseInteractionRadius) {
@@ -119,13 +125,13 @@ const Floating = () => {
         y += vy * (currentSpeed / baseSpeed);
         rotate += rotateSpeed;
 
-        if (x <= 0 || x >= window.innerWidth - imageSize) {
+        if (x <= 0 || x >= window.innerWidth - imageSize.lg) {
           vx = -vx;
-          x = Math.max(0, Math.min(x, window.innerWidth - imageSize));
+          x = Math.max(0, Math.min(x, window.innerWidth - imageSize.lg));
         }
-        if (y <= 0 || y >= window.innerHeight - imageSize) {
+        if (y <= 0 || y >= window.innerHeight - imageSize.lg) {
           vy = -vy;
-          y = Math.max(0, Math.min(y, window.innerHeight - imageSize));
+          y = Math.max(0, Math.min(y, window.innerHeight - imageSize.lg));
         }
 
         const now = Date.now();
@@ -160,7 +166,8 @@ const Floating = () => {
             y: pos.y,
             rotate: pos.rotate,
           }}
-          className="absolute w-24 h-24 object-cover rounded-none"
+          className="absolute object-cover rounded-none 
+            w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28"
         />
       ))}
     </div>
