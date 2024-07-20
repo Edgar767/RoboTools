@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, useAnimationFrame } from 'framer-motion';
 
-const Floating = () => {
+const FloatingBlocks = () => {
   const [positions, setPositions] = useState([]);
   const mousePos = useRef({ x: 0, y: 0 });
 
@@ -167,4 +167,4 @@ const Floating = () => {
   );
 };
 
-export default Floating;
+export default FloatingBlocks;

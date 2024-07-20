@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import InicioCards from '../../Components/InicioCards';
 import { AcademicCapIcon } from "@heroicons/react/24/solid";
 import InfiniteCarrusel from "../../Components/InfiniteCarrusel";
-import Floating from '../../Components/Animation/Floating';
+import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 
 const CardsData = [
   {
@@ -71,7 +71,7 @@ const ProgramasEscolares = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Floating />
+      <FloatingBlocks />
       <div className="relative z-10">
       <div className="flex justify-center space-x-4 mt-8 mb-4">
         <Link to="/preescolar">

@@ -1,5 +1,5 @@
 import InicioCards from "../../Components/InicioCards";
-import Floating from '../../Components/Animation/Floating';
+import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 
 const InicioCardsData = [
   {
@@ -42,7 +42,7 @@ const InicioCardsData = [
 const CursosRobotools = () => {
   return (
     <div className="relative min-h-screen">
-      <Floating />
+      <FloatingBlocks />
       <div className="relative z-10">
     <div className="mt-8"> {/* Agrega margen superior a la página */}
       

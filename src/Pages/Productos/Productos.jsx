@@ -1,5 +1,5 @@
 import Tabs from '../../Components/Productos/Tabs';
-import Floating from '../../Components/Animation/Floating';
+import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 import {
   legoEducationData,
   qoboData,
@@ -103,7 +103,7 @@ const Productos = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Floating />
+      <FloatingBlocks />
       <div className="relative z-10">
       <Tabs
         carruselDataTab1={carruselDataTab1}

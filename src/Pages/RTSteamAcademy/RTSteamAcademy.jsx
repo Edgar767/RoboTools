@@ -1,10 +1,10 @@
-import Floating from '../../Components/Animation/Floating';
+import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 
 const RTSteamAcademy = () => {
 
   return (
     <div className="relative min-h-screen">
-        <Floating />
+        <FloatingBlocks />
       <div className="relative z-10">
         <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">LA MEJOR MANERA DE ENSEÑAR ROBOTICA</h4>
         

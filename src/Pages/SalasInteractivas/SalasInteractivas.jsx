@@ -3,7 +3,7 @@ import PostsDouble from '../../Components/ProgramasEscolares/PostsDouble';
 import FullContentModal from '../../Components/FullContentModal';
 import Ingenius from './Ingenius';
 import Sensoria from './Sensoria';
-import Floating from '../../Components/Animation/Floating';
+import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 
 
 const DoubleData = [
@@ -49,7 +49,7 @@ const SalasInteractivas = () => {
 
     return (
         <div className="relative min-h-screen">
-      <Floating />
+      <FloatingBlocks />
       <div className="relative z-10">
         <>
             <PostsDouble
