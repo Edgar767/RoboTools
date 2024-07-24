@@ -1,9 +1,13 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, useAnimationFrame } from 'framer-motion';
 
+const GRID_SIZE = 200; // Tamaño de cada celda de la cuadrícula
+
 const FloatingBlocks = () => {
   const [positions, setPositions] = useState([]);
   const mousePos = useRef({ x: 0, y: 0 });
+  const lastUpdateTime = useRef(0);
+  const gridRef = useRef({});
 
   const images = [
     '/extras/lego1.png',
@@ -22,6 +26,7 @@ const FloatingBlocks = () => {
 
   const imageSize = 96;
   const mouseInteractionRadius = 100;
+  const glowDuration = 500; // Duración del brillo en milisegundos
 
   const initializePositions = useCallback(() => {
     return images.map(() => ({
@@ -35,6 +40,8 @@ const FloatingBlocks = () => {
       currentSpeed: 2,
       interactionTimer: 0,
       lastCollisionTime: 0,
+      glowIntensity: 0,
+      glowStartTime: 0,
     }));
   }, []);
 
@@ -51,6 +58,33 @@ const FloatingBlocks = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [handleMouseMove]);
 
+  const updateGrid = (positions) => {
+    const newGrid = {};
+    positions.forEach((pos, index) => {
+      const cellX = Math.floor(pos.x / GRID_SIZE);
+      const cellY = Math.floor(pos.y / GRID_SIZE);
+      const cellKey = `${cellX},${cellY}`;
+      if (!newGrid[cellKey]) {
+        newGrid[cellKey] = [];
+      }
+      newGrid[cellKey].push(index);
+    });
+    gridRef.current = newGrid;
+  };
+
+  const getNeighbors = (cellX, cellY) => {
+    const neighbors = [];
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        const neighborKey = `${cellX + i},${cellY + j}`;
+        if (gridRef.current[neighborKey]) {
+          neighbors.push(...gridRef.current[neighborKey]);
+        }
+      }
+    }
+    return neighbors;
+  };
+
   const checkCollision = (pos1, pos2) => {
     const dx = pos1.x - pos2.x;
     const dy = pos1.y - pos2.y;
@@ -58,7 +92,7 @@ const FloatingBlocks = () => {
     return distance < imageSize;
   };
 
-  const resolveCollision = (pos1, pos2) => {
+  const resolveCollision = (pos1, pos2, currentTime) => {
     const dx = pos2.x - pos1.x;
     const dy = pos2.y - pos1.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -84,12 +118,15 @@ const FloatingBlocks = () => {
       pos2.y += overlap * ny / 2;
     }
 
-    const now = Date.now();
-    pos1.lastCollisionTime = now;
-    pos2.lastCollisionTime = now;
+    pos1.lastCollisionTime = currentTime;
+    pos2.lastCollisionTime = currentTime;
+    pos1.glowIntensity = 1;
+    pos2.glowIntensity = 1;
+    pos1.glowStartTime = currentTime;
+    pos2.glowStartTime = currentTime;
   };
 
-  const handleMouseInteraction = (pos) => {
+  const handleMouseInteraction = (pos, currentTime) => {
     const dx = pos.x + imageSize / 2 - mousePos.current.x;
     const dy = pos.y + imageSize / 2 - mousePos.current.y;
     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -100,6 +137,8 @@ const FloatingBlocks = () => {
       pos.vy += (dy / distance) * factor * 0.5;
       pos.currentSpeed = pos.baseSpeed * (1 + factor * 2);
       pos.interactionTimer = 60;
+      pos.glowIntensity = 1;
+      pos.glowStartTime = currentTime;
     } else if (pos.interactionTimer > 0) {
       pos.interactionTimer--;
       if (pos.interactionTimer === 0) {
@@ -108,39 +147,63 @@ const FloatingBlocks = () => {
     }
   };
 
-  useAnimationFrame(() => {
+  const handleScreenCollision = (pos, currentTime) => {
+    let collided = false;
+    if (pos.x <= 0 || pos.x >= window.innerWidth - imageSize) {
+      pos.vx = -pos.vx;
+      pos.x = Math.max(0, Math.min(pos.x, window.innerWidth - imageSize));
+      collided = true;
+    }
+    if (pos.y <= 0 || pos.y >= window.innerHeight - imageSize) {
+      pos.vy = -pos.vy;
+      pos.y = Math.max(0, Math.min(pos.y, window.innerHeight - imageSize));
+      collided = true;
+    }
+    if (collided) {
+      pos.glowIntensity = 1;
+      pos.glowStartTime = currentTime;
+    }
+    return pos;
+  };
+
+  useAnimationFrame((t) => {
+    const currentTime = t;
+    const deltaTime = currentTime - lastUpdateTime.current;
+    lastUpdateTime.current = currentTime;
+
     setPositions((prevPositions) => {
       const newPositions = prevPositions.map((pos) => {
-        let { x, y, vx, vy, rotate, rotateSpeed, baseSpeed, currentSpeed, interactionTimer, lastCollisionTime } = pos;
+        let { x, y, vx, vy, rotate, rotateSpeed, baseSpeed, currentSpeed, interactionTimer, lastCollisionTime, glowIntensity, glowStartTime } = pos;
 
-        handleMouseInteraction(pos);
+        handleMouseInteraction(pos, currentTime);
 
-        x += vx * (currentSpeed / baseSpeed);
-        y += vy * (currentSpeed / baseSpeed);
-        rotate += rotateSpeed;
+        x += vx * (currentSpeed / baseSpeed) * (deltaTime / 16);
+        y += vy * (currentSpeed / baseSpeed) * (deltaTime / 16);
+        rotate += rotateSpeed * (deltaTime / 16);
 
-        if (x <= 0 || x >= window.innerWidth - imageSize) {
-          vx = -vx;
-          x = Math.max(0, Math.min(x, window.innerWidth - imageSize));
-        }
-        if (y <= 0 || y >= window.innerHeight - imageSize) {
-          vy = -vy;
-          y = Math.max(0, Math.min(y, window.innerHeight - imageSize));
-        }
+        ({ x, y, vx, vy, glowIntensity, glowStartTime } = handleScreenCollision({ x, y, vx, vy, glowIntensity, glowStartTime }, currentTime));
 
-        const now = Date.now();
-        if (now - lastCollisionTime > 2000) {
+        if (currentTime - lastCollisionTime > 2000) {
           vx += (Math.random() - 0.5) * 0.1;
           vy += (Math.random() - 0.5) * 0.1;
         }
 
-        return { x, y, vx, vy, rotate, rotateSpeed, baseSpeed, currentSpeed, interactionTimer, lastCollisionTime };
+        const timeSinceGlowStart = currentTime - glowStartTime;
+        glowIntensity = Math.max(0, 1 - (timeSinceGlowStart / glowDuration));
+
+        return { x, y, vx, vy, rotate, rotateSpeed, baseSpeed, currentSpeed, interactionTimer, lastCollisionTime, glowIntensity, glowStartTime };
       });
 
+      updateGrid(newPositions);
+
       for (let i = 0; i < newPositions.length; i++) {
-        for (let j = i + 1; j < newPositions.length; j++) {
-          if (checkCollision(newPositions[i], newPositions[j])) {
-            resolveCollision(newPositions[i], newPositions[j]);
+        const cellX = Math.floor(newPositions[i].x / GRID_SIZE);
+        const cellY = Math.floor(newPositions[i].y / GRID_SIZE);
+        const neighbors = getNeighbors(cellX, cellY);
+        
+        for (let j of neighbors) {
+          if (i !== j && checkCollision(newPositions[i], newPositions[j])) {
+            resolveCollision(newPositions[i], newPositions[j], currentTime);
           }
         }
       }
@@ -159,6 +222,8 @@ const FloatingBlocks = () => {
             x: pos.x,
             y: pos.y,
             rotate: pos.rotate,
+            filter: `brightness(${0.75 + pos.glowIntensity * 0.75})`,
+            transition: 'filter 0.2s ease-out',
           }}
           className="absolute w-24 h-24 object-cover rounded-none"
         />
