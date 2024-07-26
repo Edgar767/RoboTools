@@ -13,13 +13,17 @@ const InicioCards = ({ title, description, cards }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((card, index) => (
-            <a key={index} href={card.link} className="group relative flex h-64 sm:h-72 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+            <a
+              key={index}
+              href={card.link}
+              className="group relative flex h-80 sm:h-96 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg"
+            >
               <div className="absolute inset-0">
-                <img 
-                  src={card.image} 
-                  loading="lazy" 
-                  alt={card.alt} 
-                  className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" 
+                <img
+                  src={card.image}
+                  loading="lazy"
+                  alt={card.alt}
+                  className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-50 group-hover:opacity-75 transition-opacity duration-200"></div>
               </div>
