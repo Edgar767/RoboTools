@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -6,8 +6,9 @@ const InicioCards = ({ title, description, cards }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  let touchStartX = 0;
-  let touchEndX = 0;
+  const containerRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,19 +31,18 @@ const InicioCards = ({ title, description, cards }) => {
   };
 
   const handleTouchStart = (e) => {
-    touchStartX = e.touches[0].clientX;
+    touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e) => {
-    touchEndX = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
   };
 
   const handleTouchEnd = () => {
-    if (touchStartX - touchEndX > 50) {
+    const threshold = 50; // Change the threshold as needed
+    if (touchStartX.current - touchEndX.current > threshold) {
       nextCard();
-    }
-
-    if (touchStartX - touchEndX < -50) {
+    } else if (touchStartX.current - touchEndX.current < -threshold) {
       prevCard();
     }
   };
@@ -76,24 +76,27 @@ const InicioCards = ({ title, description, cards }) => {
       x: direction > 0 ? '100%' : '-100%',
       opacity: 0,
       transition: {
+        type: 'tween',
         duration: 0.5,
-        ease: [0.42, 0, 0.58, 1] // cubic-bezier for smooth transition
+        ease: [0.42, 0, 0.58, 1]
       }
     }),
     center: {
       x: 0,
       opacity: 1,
       transition: {
+        type: 'tween',
         duration: 0.5,
-        ease: [0.42, 0, 0.58, 1] // cubic-bezier for smooth transition
+        ease: [0.42, 0, 0.58, 1]
       }
     },
     exit: (direction) => ({
       x: direction > 0 ? '-100%' : '100%',
       opacity: 0,
       transition: {
+        type: 'tween',
         duration: 0.5,
-        ease: [0.42, 0, 0.58, 1] // cubic-bezier for smooth transition
+        ease: [0.42, 0, 0.58, 1]
       }
     })
   };
@@ -111,6 +114,7 @@ const InicioCards = ({ title, description, cards }) => {
         {isMobile ? (
           <div
             className="relative w-full h-80 overflow-hidden"
+            ref={containerRef}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -124,23 +128,11 @@ const InicioCards = ({ title, description, cards }) => {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                layout
+                style={{ position: 'absolute', width: '100%', height: '100%' }} // Ensure proper sizing
               >
                 {renderCard(cards[currentIndex], currentIndex)}
               </motion.div>
             </AnimatePresence>
-            <button
-              onClick={prevCard}
-              className="absolute top-1/2 left-4 z-10 text-5xl text-white transform -translate-y-1/2"
-            >
-              ←
-            </button>
-            <button
-              onClick={nextCard}
-              className="absolute top-1/2 right-4 z-10 text-5xl text-white transform -translate-y-1/2"
-            >
-              →
-            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
