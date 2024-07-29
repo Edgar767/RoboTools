@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const InicioCards = ({ title, description, cards }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  let touchStartX = 0;
+  let touchEndX = 0;
 
   useEffect(() => {
     const handleResize = () => {
@@ -17,11 +20,31 @@ const InicioCards = ({ title, description, cards }) => {
   }, []);
 
   const nextCard = () => {
+    setDirection(1);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
   };
 
   const prevCard = () => {
+    setDirection(-1);
     setCurrentIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX - touchEndX > 50) {
+      nextCard();
+    }
+
+    if (touchStartX - touchEndX < -50) {
+      prevCard();
+    }
   };
 
   const renderCard = (card, index) => (
@@ -48,6 +71,29 @@ const InicioCards = ({ title, description, cards }) => {
     </a>
   );
 
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: [0.42, 0, 0.58, 1] // cubic-bezier for smooth transition
+      }
+    },
+    exit: (direction) => ({
+      x: direction > 0 ? '-100%' : '100%',
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.42, 0, 0.58, 1] // cubic-bezier for smooth transition
+      }
+    })
+  };
+
   return (
     <div className="py-12 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
@@ -59,28 +105,34 @@ const InicioCards = ({ title, description, cards }) => {
         </div>
 
         {isMobile ? (
-          <div className="relative w-full h-80">
-            <AnimatePresence initial={false}>
+          <div
+            className="relative w-full h-80 overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={currentIndex}
                 className="absolute w-full h-full"
-                initial={{ opacity: 0, x: 300 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -300 }}
-                transition={{ duration: 0.5 }}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
               >
                 {renderCard(cards[currentIndex], currentIndex)}
               </motion.div>
             </AnimatePresence>
             <button
               onClick={prevCard}
-              className="absolute top-1/2 left-2 z-10 bg-white bg-opacity-50 rounded-full p-2"
+              className="absolute top-1/2 left-4 z-10 text-5xl text-white transform -translate-y-1/2"
             >
               ←
             </button>
             <button
               onClick={nextCard}
-              className="absolute top-1/2 right-2 z-10 bg-white bg-opacity-50 rounded-full p-2"
+              className="absolute top-1/2 right-4 z-10 text-5xl text-white transform -translate-y-1/2"
             >
               →
             </button>
