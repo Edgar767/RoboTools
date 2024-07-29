@@ -22,7 +22,7 @@ const Infinito = ({ title, description, cards }) => {
     return () => window.removeEventListener('resize', updateWidths);
   }, []);
 
-  const cardWidth = containerWidth / 3; // Asumimos 3 tarjetas visibles en desktop
+  const cardWidth = containerWidth / (window.innerWidth < 640 ? 1 : 3); // Una tarjeta en móvil, tres en desktop
   const totalWidth = cardWidth * cards.length;
 
   useEffect(() => {
@@ -74,8 +74,6 @@ const Infinito = ({ title, description, cards }) => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <div className="absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-[rgb(243,244,246)] to-transparent"></div>
-          
           <motion.div
             ref={carouselRef}
             className="flex"
@@ -108,8 +106,6 @@ const Infinito = ({ title, description, cards }) => {
               </div>
             ))}
           </motion.div>
-
-          <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-[rgb(243,244,246)] to-transparent"></div>
         </div>
       </div>
     </div>
