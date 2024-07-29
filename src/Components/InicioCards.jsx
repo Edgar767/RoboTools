@@ -75,6 +75,10 @@ const InicioCards = ({ title, description, cards }) => {
     enter: (direction) => ({
       x: direction > 0 ? '100%' : '-100%',
       opacity: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.42, 0, 0.58, 1] // cubic-bezier for smooth transition
+      }
     }),
     center: {
       x: 0,
@@ -120,6 +124,7 @@ const InicioCards = ({ title, description, cards }) => {
                 initial="enter"
                 animate="center"
                 exit="exit"
+                layout
               >
                 {renderCard(cards[currentIndex], currentIndex)}
               </motion.div>
