@@ -74,33 +74,10 @@ const Testimonials = ({ testimonials, speed = 1, gap = 32 }) => {
     marginRight: `${gap}px`,
   };
 
-  const fadeStyles = {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    width: '100px',
-    pointerEvents: 'none',
-    zIndex: 1,
-  };
-
-  const fadeLeftStyles = {
-    ...fadeStyles,
-    left: 0,
-    background: 'linear-gradient(to right, rgb(243, 244, 246), rgba(243, 244, 246, 0))',
-  };
-
-  const fadeRightStyles = {
-    ...fadeStyles,
-    right: 0,
-    background: 'linear-gradient(to left, rgb(243, 244, 246), rgba(243, 244, 246, 0))',
-  };
-
   return (
     <div className="py-6 sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-xl px-4 md:px-8">
         <div ref={containerRef} style={containerStyles}>
-          <div style={fadeLeftStyles}></div>
-          <div style={fadeRightStyles}></div>
           <div ref={trackRef} style={trackStyles}>
             {[...testimonials, ...testimonials].map((testimonial, index) => (
               <div
