@@ -11,7 +11,8 @@ const Testimonials = ({ testimonials, speed = 1, gap = 32 }) => {
     const updateItemWidth = () => {
       if (containerRef.current) {
         const containerWidth = containerRef.current.offsetWidth;
-        setItemWidth(containerWidth < 640 ? containerWidth : containerWidth / 2);
+        // Ajusta el ancho para que los testimonios sean un poco más estrechos
+        setItemWidth(containerWidth < 640 ? containerWidth * 0.8 : containerWidth * 0.4);
       }
     };
 
@@ -59,13 +60,18 @@ const Testimonials = ({ testimonials, speed = 1, gap = 32 }) => {
 
   const containerStyles = {
     position: 'relative',
-    width: '100%',
+    width: '100vw',
     overflow: 'hidden',
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
   };
 
   const trackStyles = {
     display: 'flex',
     transform: `translateX(${trackPosition}px)`,
+    width: '100%',
+    boxSizing: 'border-box',
   };
 
   const testimonialItemStyles = {
@@ -76,7 +82,7 @@ const Testimonials = ({ testimonials, speed = 1, gap = 32 }) => {
 
   return (
     <div className="py-6 sm:py-8 lg:py-12">
-      <div className="mx-auto max-w-screen-xl px-4 md:px-8">
+      <div className="w-full px-0 overflow-hidden">
         <div ref={containerRef} style={containerStyles}>
           <div ref={trackRef} style={trackStyles}>
             {[...testimonials, ...testimonials].map((testimonial, index) => (
