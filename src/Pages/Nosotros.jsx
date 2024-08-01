@@ -1,5 +1,104 @@
 import { useEffect } from 'react';
 import FloatingBlocks from '../Components/Animation/FloatingBlocks';
+import Infinito from '../Components/Infinito';
+import Testimonials from '../Components/Testimonials';
+
+const InfinitoData = [
+  {
+    title: "Estatal Emprendedores Aguascalientes 2007",
+    desc: "1er Lugar Premio",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "World Robot Olympiad 2013.",
+    desc: "2do. Lugar categoría primaria en la competencia regional de la",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "World Robot Olympiad 2013.",
+    desc: "3er. Lugar en el Nacional categoría secundaria de",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "World Robot Olympiad, Regional Querétaro. Junio 2014.",
+    desc: "1er. Lugar en categoría Secundaria en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "World Robot Olympiad Nacional.",
+    desc: "5 Equipos: 2 de Secundaria y 3 de Primaria consiguen su pase a",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "World Robot Olympiad, regional Guadalajara 2015.",
+    desc: "2do. Lugar categoría Primario en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "First LEGO League en Estado de México 2013.",
+    desc: "Subcampeón en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "Gracious Professionalism en competencia First LEGO League en Estado de México 2013.",
+    desc: "Reconocimiento",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "Gracious Professionalism en competencia First LEGO League en Monterrey 2014.",
+    desc: "Reconocimiento",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "First LEGO League en Monterrey 2014.",
+    desc: "Reconocimiento a la mejor programación en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+  {
+    title: "World Robot Olympiad, Regional Monterrey 2016.",
+    desc: "Segundo lugar en categoría primaria en competencia",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    alt: "Photo by Fakurian Design",
+  },
+];
+
+const testimonialsData = [
+  {
+    quote: '"This is a section of some simple filler text, also known as placeholder text."',
+    image: 'https://images.unsplash.com/photo-1567515004624-219c11d31f2e?auto=format&q=75&fit=crop&w=112',
+    name: 'John McCulling',
+    title: 'CEO / Datadrift',
+  },
+  {
+    quote: '"This is a section of some simple filler text, also known as placeholder text."',
+    image: 'https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=112',
+    name: 'Kate Berg',
+    title: 'CFO / Dashdash',
+  },
+  {
+    quote: '"This is a section of some simple filler text, also known as placeholder text."',
+    image: 'https://images.unsplash.com/photo-1567515004624-219c11d31f2e?auto=format&q=75&fit=crop&w=112',
+    name: 'John McCulling 2',
+    title: 'CEO / Datadrift',
+  },
+  {
+    quote: '"This is a section of some simple filler text, also known as placeholder text."',
+    image: 'https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=112',
+    name: 'Kate Berg 2',
+    title: 'CFO / Dashdash',
+  },
+  // Agrega más testimonios aquí
+];
 
 function Nosotros() {
   useEffect(() => {
@@ -88,7 +187,11 @@ function Nosotros() {
 
   return (
     <div className="relative min-h-screen">
-    <FloatingBlocks />
+      <FloatingBlocks />
+        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">Conoce Mas De Robotools</h4>
+          <p className="mt-4 text-gray-800 text-center text-lg lg:text-xl">
+              Descripcion Breve.
+          </p>
     <div className="relative z-10">
       {/* Duplicando la sección de HISTORIA */}
       <section className="my-16 lg:my-24 animate-on-scroll">
@@ -211,6 +314,17 @@ function Nosotros() {
         </div>
       </section>
     </div>
+
+    {/*RECONOCIMIENTOS Y PREMIACIONES*/}
+    <Infinito
+      title="Reconocimientos y Premiaciones"
+      cards={InfinitoData}
+    />
+
+    {/*CARRUSEL DE OPINIONES*/}
+    <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">Lo Que Dicen Nuestros Alumnos</h4>
+      <Testimonials testimonials={testimonialsData} />
+
   </div>
   );
 }
