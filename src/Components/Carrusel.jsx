@@ -55,7 +55,12 @@ const Carrusel = ({ images, title, title2Texts }) => {
           className={`absolute inset-0 transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
         >
           <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Filtro oscuro */}
-          <img src={image} alt={`Carrusel ${index + 1}`} className="h-full w-full object-cover" />
+          <img 
+            src={image} 
+            alt={`Carrusel ${index + 1}`} 
+            className="h-full w-full object-cover"
+            loading={index === 0 ? 'eager' : 'lazy'}
+          />
         </div>
       ))}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 space-y-4 px-4 md:px-8">
