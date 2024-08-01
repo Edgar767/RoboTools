@@ -59,6 +59,7 @@ const InicioCards = ({ title, description, cards }) => {
           loading="lazy"
           alt={card.alt}
           className="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+          style={{ minHeight: '100%', minWidth: '100%' }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-50 group-hover:opacity-75 transition-opacity duration-200"></div>
       </div>
@@ -153,7 +154,7 @@ InicioCards.propTypes = {
       desc: PropTypes.string,
       image: PropTypes.string.isRequired,
       alt: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
+      link: PropTypes.string,
     })
   ).isRequired,
 };
