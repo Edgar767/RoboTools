@@ -1,55 +1,70 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import InicioCards from '../../Components/InicioCards';
 import { AcademicCapIcon } from "@heroicons/react/24/solid";
+import InicioCards from '../../Components/InicioCards';
 import InfiniteCarrusel from "../../Components/InfiniteCarrusel";
 import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 
 const CardsData = [
   {
-    title: "Titulo 1",
+    title: "Vinculacion Al Nuevo Modelo Educativo",
     desc: "",
     image: "",
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
   {
-    title: "Titulo 2",
+    title: "Desarrolla Emociones Socioemocionales",
     desc: "",
     image: "",
     alt: "Photo by Fakurian Design",
-    link: "/cursosrobotools",
   },
   {
-    title: "Titulo 3",
+    title: "Desarrollo del Pensamiento Matematico",
     desc: "",
     image: "",
     alt: "Photo by Fakurian Design",
-    link: "/rtsteamacademy",
   },
 ];
 
 const CardsData2 = [
   {
-    title: "MATERIALES",
+    title: "5c",
     desc: "",
     image: "",
     alt: "Photo by Fakurian Design",
-    link: "",
+  },
+  {
+    title: "ABP (Aprendizaje Basado en Proyecto)",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
+  },
+];
+
+const CardsData3 = [
+  {
+    title: "KITS EDUCATIVOS",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
   },
   {
     title: "PLANES DE ESTUDIO",
     desc: "",
     image: "",
     alt: "Photo by Fakurian Design",
-    link: "",
   },
   {
     title: "SOPORTE PEDAGOGICO",
     desc: "",
     image: "",
     alt: "Photo by Fakurian Design",
-    link: "",
+  },
+  {
+    title: "CAPACITACION",
+    desc: "",
+    image: "",
+    alt: "Photo by Fakurian Design",
   },
 ];
 
@@ -66,6 +81,10 @@ const ProgramasEscolares = () => {
   const location = useLocation();
   const [activeButton, setActiveButton] = useState(location.pathname);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const buttonClass = (path) => 
     `btn ${activeButton === path ? 'btn-active' : 'btn-variation-1'}`;
 
@@ -73,53 +92,57 @@ const ProgramasEscolares = () => {
     <div className="relative min-h-screen">
       <FloatingBlocks />
       <div className="relative z-10">
-      <div className="flex justify-center space-x-4 mt-8 mb-4">
-        <Link to="/preescolar">
-          <button 
-            className={buttonClass('/preescolar')}
-            onClick={() => setActiveButton('/preescolar')}
-          >
-            <AcademicCapIcon className="h-6 w-6" />
-            Preescolar
-          </button>
-        </Link>
-        <Link to="/primaria">
-          <button 
-            className={buttonClass('/primaria')}
-            onClick={() => setActiveButton('/primaria')}
-          >
-            <AcademicCapIcon className="h-6 w-6" />
-            Primaria
-          </button>
-        </Link>
-        <Link to="/secundaria">
-          <button 
-            className={buttonClass('/secundaria')}
-            onClick={() => setActiveButton('/secundaria')}
-          >
-            <AcademicCapIcon className="h-6 w-6" />
-            Secundaria
-          </button>
-        </Link>
-      </div>
+        <div className="flex justify-center space-x-4 mt-8 mb-4">
+          <Link to="/preescolar">
+            <button 
+              className={buttonClass('/preescolar')}
+              onClick={() => setActiveButton('/preescolar')}
+            >
+              <AcademicCapIcon className="h-6 w-6" />
+              Preescolar
+            </button>
+          </Link>
+          <Link to="/primaria">
+            <button 
+              className={buttonClass('/primaria')}
+              onClick={() => setActiveButton('/primaria')}
+            >
+              <AcademicCapIcon className="h-6 w-6" />
+              Primaria
+            </button>
+          </Link>
+          <Link to="/secundaria">
+            <button 
+              className={buttonClass('/secundaria')}
+              onClick={() => setActiveButton('/secundaria')}
+            >
+              <AcademicCapIcon className="h-6 w-6" />
+              Secundaria
+            </button>
+          </Link>
+        </div>
 
-      <h4 className="title color-variation-1 mt-8 mb-20 text-center text-4xl font-extrabold">NUESTROS PROGRAMAS INTEGRAN</h4>
+        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">NUESTROS PROGRAMAS INTEGRAN</h4>
 
-      {/* Carrusel */}
-      <InfiniteCarrusel
-        cards={InfiniteCarruselData}
-      />
+        <InfiniteCarrusel
+          cards={InfiniteCarruselData}
+        />
 
-      <InicioCards
-          title='METODOLOGIAS DE NUESTROS PROGRAMAS'
+        <InicioCards
+          title='ENFOQUE STEAM'
           cards={CardsData}
-      />
+        />
 
-      <InicioCards
-          title="ELEMENTOS DE NUESTROS CURSOS"
+        <InicioCards
+          title='METODOLOGIAS DE NUESTROS PROGRAMAS'
           cards={CardsData2}
-      />
-    </div>
+        />
+
+        <InicioCards
+          title="ELEMENTOS DE NUESTROS CURSOS"
+          cards={CardsData3}
+        />
+      </div>
     </div>
   );
 };

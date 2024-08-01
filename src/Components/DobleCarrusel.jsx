@@ -158,7 +158,7 @@ DobleCarrusel.propTypes = {
       desc: PropTypes.string,
       image: PropTypes.string.isRequired,
       alt: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
+      link: PropTypes.string,
     })
   ).isRequired,
   rightTitle: PropTypes.string,
@@ -169,7 +169,7 @@ DobleCarrusel.propTypes = {
       desc: PropTypes.string,
       image: PropTypes.string.isRequired,
       alt: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
+      link: PropTypes.string,
     })
   ).isRequired,
 };
