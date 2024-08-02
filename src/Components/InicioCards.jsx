@@ -48,9 +48,8 @@ const InicioCards = ({ title, description, cards }) => {
   };
 
   const renderCard = (card, index) => (
-    <div className="w-full sm:w-1/2 lg:w-1/3 px-3 mb-6">
+    <div key={index} className="w-full sm:w-1/2 lg:w-1/3 px-3 mb-6">
       <a
-        key={index}
         href={card.link}
         className="group relative flex h-80 sm:h-96 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg"
       >
