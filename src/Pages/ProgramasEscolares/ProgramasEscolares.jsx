@@ -30,13 +30,13 @@ const CardsData2 = [
   {
     title: "5c",
     desc: "",
-    image: "",
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpg',
     alt: "Photo by Fakurian Design",
   },
   {
     title: "ABP (Aprendizaje Basado en Proyecto)",
     desc: "",
-    image: "",
+    image: "/img/Imagenes_Inicio/Inicio_Cards/image33.jpg",
     alt: "Photo by Fakurian Design",
   },
 ];
@@ -142,6 +142,7 @@ const ProgramasEscolares = () => {
           title="ELEMENTOS DE NUESTROS CURSOS"
           cards={CardsData3}
         />
+
       </div>
     </div>
   );
