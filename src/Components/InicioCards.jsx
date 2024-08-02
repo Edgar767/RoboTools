@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from "prop-types";
 import { motion, AnimatePresence } from 'framer-motion';
+import { debounce } from 'lodash';
 
 const InicioCards = ({ title, description, cards }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -11,9 +12,9 @@ const InicioCards = ({ title, description, cards }) => {
   const touchEndX = useRef(0);
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = debounce(() => {
       setIsMobile(window.innerWidth < 640);
-    };
+    }, 200);
 
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -52,6 +53,7 @@ const InicioCards = ({ title, description, cards }) => {
       <a
         href={card.link}
         className="group relative flex h-80 sm:h-96 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg"
+        aria-label={card.title}
       >
         <div className="absolute inset-0">
           <img
