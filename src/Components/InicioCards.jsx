@@ -158,7 +158,7 @@ const InicioCards = ({ title, description, cards }) => {
 };
 
 InicioCards.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   description: PropTypes.string,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
