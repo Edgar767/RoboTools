@@ -22,8 +22,10 @@ const Infinito = ({ title, description, cards }) => {
     return () => window.removeEventListener('resize', updateWidths);
   }, []);
 
-  const cardWidth = (containerWidth / (window.innerWidth < 640 ? 1 : 3)) - 16; // Ajusta el ancho de las tarjetas para el espaciado
-  const totalWidth = (cardWidth + 16) * cards.length; // Añade espacio total para el cálculo
+  // Define el ancho de la tarjeta basado en el tamaño de la pantalla
+  const isMobile = window.innerWidth < 640;
+  const cardWidth = isMobile ? containerWidth / 1.3 - 16 : containerWidth / 3 - 16; // Aumenta el tamaño de las tarjetas en móvil
+  const totalWidth = (cardWidth + 16) * cards.length; // Incluye el espacio adicional en el cálculo
 
   useEffect(() => {
     let animationFrame;
@@ -76,7 +78,7 @@ const Infinito = ({ title, description, cards }) => {
         >
           <motion.div
             ref={carouselRef}
-            className="flex gap-4" // Usa `gap` para espaciar las tarjetas
+            className="flex gap-4"
             animate={controls}
             style={{ width: `${totalWidth * 3}px` }}
           >
