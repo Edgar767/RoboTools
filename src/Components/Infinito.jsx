@@ -22,8 +22,8 @@ const Infinito = ({ title, description, cards }) => {
     return () => window.removeEventListener('resize', updateWidths);
   }, []);
 
-  const cardWidth = containerWidth / (window.innerWidth < 640 ? 1 : 3); // Una tarjeta en móvil, tres en desktop
-  const totalWidth = cardWidth * cards.length;
+  const cardWidth = (containerWidth / (window.innerWidth < 640 ? 1 : 3)) - 16; // Ajusta el ancho de las tarjetas para el espaciado
+  const totalWidth = (cardWidth + 16) * cards.length; // Añade espacio total para el cálculo
 
   useEffect(() => {
     let animationFrame;
@@ -59,31 +59,31 @@ const Infinito = ({ title, description, cards }) => {
   const [cardsState] = useState([...cards, ...cards, ...cards]);
 
   return (
-    <div className="py-12 sm:py-16 lg:py-24">
-      <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-        <div className="mb-10 md:mb-16">
-          <h2 className="mb-4 text-center text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 md:mb-6">{title}</h2>
+    <div className="py-12 sm:py-16 lg:py-24 w-full">
+      <div className="w-full">
+        <div className="mb-10 md:mb-16 text-center">
+          <h2 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 md:mb-6">{title}</h2>
           {description && (
-            <p className="mx-auto max-w-screen-md text-center text-sm sm:text-base md:text-lg text-gray-500">{description}</p>
+            <p className="mx-auto max-w-screen-md text-sm sm:text-base md:text-lg text-gray-500">{description}</p>
           )}
         </div>
 
         <div 
           ref={containerRef}
-          className="relative overflow-hidden"
+          className="relative overflow-hidden w-full"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           <motion.div
             ref={carouselRef}
-            className="flex"
+            className="flex gap-4" // Usa `gap` para espaciar las tarjetas
             animate={controls}
             style={{ width: `${totalWidth * 3}px` }}
           >
             {cardsState.map((card, index) => (
               <div
                 key={`${card.title}-${index}`}
-                className="card w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 flex-grow-0 px-3"
+                className="card flex-shrink-0"
                 style={{ width: `${cardWidth}px` }}
               >
                 <a href={card.link} className="group relative flex h-64 sm:h-72 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg">
