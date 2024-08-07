@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { motion, useAnimation } from "framer-motion";
 
-const InfiniteCarrusel = ({ cards }) => {
+const InfiniteCarrusel = ({ title, description, cards }) => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const carouselRef = useRef(null);
@@ -28,7 +28,7 @@ const InfiniteCarrusel = ({ cards }) => {
   }, []);
 
   const cardWidth = 400; // Ancho fijo de la tarjeta
-  const totalWidth = cardWidth * cards.length;
+  const totalWidth = (cardWidth + 10) * cards.length; // 10px de margen entre tarjetas
 
   useEffect(() => {
     let animationFrame;
@@ -130,41 +130,51 @@ const InfiniteCarrusel = ({ cards }) => {
   `;
 
   return (
-    <>
+    <div className="py-12 sm:py-16 lg:py-24 w-full">
       <style>{cardStyles}</style>
-      <div 
-        ref={containerRef}
-        className="relative overflow-hidden"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <motion.div
-          ref={carouselRef}
-          className="flex"
-          animate={controls}
-          style={{ width: `${totalWidth * 3}px` }}
+      <div className="w-full">
+        <div className="mb-10 md:mb-16 text-center">
+          <h2 className="mb-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 md:mb-6">{title}</h2>
+          {description && (
+            <p className="mx-auto max-w-screen-md text-sm sm:text-base md:text-lg text-gray-500">{description}</p>
+          )}
+        </div>
+
+        <div 
+          ref={containerRef}
+          className="relative overflow-hidden w-full"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {cardsState.map((card, index) => (
-            <div
-              className={`cards ${selectedCard !== null && selectedCard !== card.id ? 'blur-hover' : ''}`}
-              key={`${card.id}-${index}`}
-              onMouseEnter={() => handleCardHover(card.id)}
-              onMouseLeave={() => handleCardHover(null)}
-              style={{ width: `${cardWidth}px`, flexShrink: 0 }}
-            >
-              <img src={card.image} alt={card.title} />
-              <div className="cards-content">
-                <h3 className="cards-title">{card.title}</h3>
+          <motion.div
+            ref={carouselRef}
+            className="flex"
+            animate={controls}
+            style={{ width: `${totalWidth * 3}px` }}
+          >
+            {cardsState.map((card, index) => (
+              <div
+                className={`cards ${selectedCard !== null && selectedCard !== card.id ? 'blur-hover' : ''}`}
+                key={`${card.id}-${index}`}
+                onMouseEnter={() => handleCardHover(card.id)}
+                onMouseLeave={() => handleCardHover(null)}
+              >
+                <img src={card.image} alt={card.title} />
+                <div className="cards-content">
+                  <h3 className="cards-title">{card.title}</h3>
+                </div>
               </div>
-            </div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
 InfiniteCarrusel.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
