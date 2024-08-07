@@ -92,7 +92,7 @@ const ProgramasEscolares = () => {
     <div className="relative min-h-screen">
       <FloatingBlocks />
       <div className="relative z-10">
-        <div className="flex justify-center space-x-4 mt-8 mb-4">
+        <div className="flex justify-center space-x-4 mt-8">
           <Link to="/preescolar">
             <button 
               className={buttonClass('/preescolar')}
@@ -122,9 +122,8 @@ const ProgramasEscolares = () => {
           </Link>
         </div>
 
-        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">NUESTROS PROGRAMAS INTEGRAN</h4>
-
         <InfiniteCarrusel
+          title="NUESTROS PROGRAMAS INTEGRAN"
           cards={InfiniteCarruselData}
         />
 
