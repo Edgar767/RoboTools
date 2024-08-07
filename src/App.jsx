@@ -53,6 +53,7 @@ import CoheteAvanzadoProductos from './Pages/Productos/ProductosAeronautica/Cohe
 import VisoresProductos from './Pages/Productos/ProductosRealidadVirtual/VisoresProductos';
 import MergeCubeProductos from './Pages/Productos/ProductosRealidadVirtual/MergeCubeProductos';
 import KitMergeProductos from './Pages/Productos/ProductosRealidadVirtual/KitMergeProductos';
+import RobotoolsCentroSteam from './Pages/RobotoolsCentroSteam';
 
 const App = () => {
   return (
@@ -113,6 +114,7 @@ const App = () => {
                   <Route path="/visoresproductos" element={<VisoresProductos />} />
                   <Route path="/mergecubeproductos" element={<MergeCubeProductos />} />
                   <Route path="/kitmergeproductos" element={<KitMergeProductos />} />
+                  <Route path="/centrosteam" element={<RobotoolsCentroSteam />} />
               </Routes>
               <Footer /> {/* Mostrar Footer en todas las páginas */}
           </div>

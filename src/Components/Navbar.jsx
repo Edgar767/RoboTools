@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   HomeIcon, AcademicCapIcon, UserGroupIcon, EllipsisHorizontalCircleIcon, ShoppingBagIcon,
   BuildingStorefrontIcon, CalendarDaysIcon, BuildingLibraryIcon, NewspaperIcon,
-  RocketLaunchIcon, FireIcon, Bars3Icon, XMarkIcon
+  RocketLaunchIcon, FireIcon, Bars3Icon, XMarkIcon, BuildingOffice2Icon
 } from "@heroicons/react/24/solid";
 
 const Navbar = () => {
@@ -123,6 +123,19 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
+                  to="/centrosteam"
+                  className={`flex items-center font-bold transition duration-300 ${
+                    isActive("/centrosteam")
+                      ? "text-blue-400 hover:text-blue-500 focus:text-blue-500 bg-blue-100 hover:bg-blue-200 focus:bg-blue-200 rounded-full"
+                      : "text-black hover:text-blue-300 hover:bg-blue-100 focus:text-blue-500 focus:bg-blue-100 relative rounded-full"
+                  }`}
+                >
+                  <BuildingOffice2Icon className="w-5 h-5 mr-1" />
+                  Robotools Centro Steam
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/programasescolares"
                   className={`flex items-center font-bold transition duration-300 ${
                     isActive("/programasescolares")
@@ -196,6 +209,7 @@ const Navbar = () => {
               {[
                 { to: "/inicio", icon: <HomeIcon className="w-5 h-5 mr-1" />, text: "Inicio" },
                 { to: "/nosotros", icon: <UserGroupIcon className="w-5 h-5 mr-1" />, text: "Nosotros" },
+                { to: "/centrosteam", icon: <BuildingOffice2Icon className="w-5 h-5 mr-1" />, text: "Robotools Centro Steam" },
                 { to: "/programasescolares", icon: <AcademicCapIcon className="w-5 h-5 mr-1" />, text: "Programas Escolares" },
                 { to: "/cursosrobotools", icon: <FireIcon className="w-5 h-5 mr-1" />, text: "Cursos Robotools" },
                 { to: "/rtsteamacademy", icon: <BuildingLibraryIcon className="w-5 h-5 mr-1" />, text: "RT Steam Academy" },
