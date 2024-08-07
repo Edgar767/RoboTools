@@ -27,7 +27,7 @@ const InfiniteCarrusel = ({ title, description, cards }) => {
     return () => window.removeEventListener('resize', updateWidths);
   }, []);
 
-  const cardWidth = 400; // Ancho fijo de la tarjeta
+  const cardWidth = 400; // Ancho fijo de la tarjeta en escritorio
   const totalWidth = (cardWidth + 10) * cards.length; // 10px de margen entre tarjetas
 
   useEffect(() => {
@@ -65,8 +65,8 @@ const InfiniteCarrusel = ({ title, description, cards }) => {
 
   const cardStyles = `
     .cards {
-      width: 400px;
-      height: 300px;
+      width: 100%;
+      height: auto;
       margin-right: 10px;
       border: 0;
       box-sizing: border-box;
@@ -127,6 +127,13 @@ const InfiniteCarrusel = ({ title, description, cards }) => {
     .cards:hover .cards-title {
       transform: translateY(-5px);
     }
+
+    @media (max-width: 768px) {
+      .cards {
+        width: 300px; /* Ancho de la tarjeta en vista móvil */
+        height: 225px; /* Ajusta la altura según sea necesario */
+      }
+    }
   `;
 
   return (
@@ -173,7 +180,7 @@ const InfiniteCarrusel = ({ title, description, cards }) => {
 };
 
 InfiniteCarrusel.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   description: PropTypes.string,
   cards: PropTypes.arrayOf(
     PropTypes.shape({
