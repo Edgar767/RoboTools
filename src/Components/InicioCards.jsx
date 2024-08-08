@@ -52,7 +52,7 @@ const InicioCards = ({ title, description, cards }) => {
     <div key={index} className={`w-full sm:w-1/2 lg:w-1/3 px-3 mb-6 ${card.title === "Capacitación" ? 'self-center' : ''}`}>
       <a
         href={card.link}
-        className="group relative flex h-80 sm:h-96 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg"
+        className={`group relative flex h-72 sm:h-96 lg:h-80 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg`}
         aria-label={card.title}
       >
         <div className="absolute inset-0">
@@ -127,7 +127,7 @@ const InicioCards = ({ title, description, cards }) => {
 
         {isMobile ? (
           <div
-            className="relative w-full h-80 overflow-hidden"
+            className="relative w-full h-72 overflow-hidden"
             ref={containerRef}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
