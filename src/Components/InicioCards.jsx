@@ -147,6 +147,40 @@ const InicioCards = ({ title, description, cards }) => {
                 {renderCard(cards[currentIndex], currentIndex)}
               </motion.div>
             </AnimatePresence>
+            <div
+              className="absolute inset-y-0 left-0 flex items-center pl-3 cursor-pointer"
+              onClick={prevCard}
+            >
+              <div className="w-12 h-12 md:w-12 md:h-12 bg-white bg-opacity-50 hover:bg-opacity-75 flex justify-center items-center rounded-full">
+                <svg
+                  className="w-6 h-6 text-gray-800"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7"></path>
+                </svg>
+              </div>
+            </div>
+            <div
+              className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+              onClick={nextCard}
+            >
+              <div className="w-12 h-12 md:w-12 md:h-12 bg-white bg-opacity-50 hover:bg-opacity-75 flex justify-center items-center rounded-full">
+                <svg
+                  className="w-6 h-6 text-gray-800"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </div>
           </div>
         ) : (
           <div className={getGridClasses()}>
