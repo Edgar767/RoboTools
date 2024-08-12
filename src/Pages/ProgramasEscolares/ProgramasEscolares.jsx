@@ -4,23 +4,33 @@ import { AcademicCapIcon } from "@heroicons/react/24/solid";
 import InicioCards from '../../Components/InicioCards';
 import InfiniteCarrusel from "../../Components/InfiniteCarrusel";
 import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
+import FloatingImages from '../../Components/Animation/FloatingImages';
+
+const InfiniteCarruselData = [
+  { id: 1, image: "https://via.placeholder.com/400x300", title: " " },
+  { id: 2, image: "https://via.placeholder.com/400x300", title: "Aprendizaje divertido" },
+  { id: 3, image: "https://via.placeholder.com/400x300", title: "Vinculado al programa de estudios" },
+  { id: 4, image: "https://via.placeholder.com/400x300", title: "Desarrollo de habilidades de liderazgo" },
+  { id: 5, image: "https://via.placeholder.com/400x300", title: "Modelo educativo basado en los 4 pilares de la educación de la UNESCO" },
+  { id: 6, image: "https://via.placeholder.com/400x300", title: "Transversal" }
+];
 
 const CardsData = [
   {
     title: "Vinculacion Al Nuevo Modelo Educativo",
-    desc: "",
+    desc: "Conoce Mas",
     image: "",
     alt: "Photo by Fakurian Design",
   },
   {
     title: "Desarrolla Emociones Socioemocionales",
-    desc: "",
+    desc: "Conoce Mas",
     image: "",
     alt: "Photo by Fakurian Design",
   },
   {
     title: "Desarrollo del Pensamiento Matematico",
-    desc: "",
+    desc: "Conoce Mas",
     image: "",
     alt: "Photo by Fakurian Design",
   },
@@ -29,14 +39,14 @@ const CardsData = [
 const CardsData2 = [
   {
     title: "5c",
-    desc: "",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpg',
+    desc: "Conoce Mas",
+    image: '',
     alt: "Photo by Fakurian Design",
   },
   {
     title: "ABP (Aprendizaje Basado en Proyecto)",
-    desc: "",
-    image: "/img/Imagenes_Inicio/Inicio_Cards/image33.jpg",
+    desc: "Conoce Mas",
+    image: "",
     alt: "Photo by Fakurian Design",
   },
 ];
@@ -44,37 +54,28 @@ const CardsData2 = [
 const CardsData3 = [
   {
     title: "KITS EDUCATIVOS",
-    desc: "",
+    desc: "Conoce Mas",
     image: "",
     alt: "Photo by Fakurian Design",
   },
   {
     title: "PLANES DE ESTUDIO",
-    desc: "",
+    desc: "Conoce Mas",
     image: "",
     alt: "Photo by Fakurian Design",
   },
   {
     title: "SOPORTE PEDAGOGICO",
-    desc: "",
+    desc: "Conoce Mas",
     image: "",
     alt: "Photo by Fakurian Design",
   },
   {
     title: "CAPACITACION",
-    desc: "",
+    desc: "Conoce Mas",
     image: "",
     alt: "Photo by Fakurian Design",
   },
-];
-
-const InfiniteCarruselData = [
-  { id: 1, image: "https://via.placeholder.com/400x300", title: "Desarrollo cognitivo intelectual" },
-  { id: 2, image: "https://via.placeholder.com/400x300", title: "Aprendizaje divertido" },
-  { id: 3, image: "https://via.placeholder.com/400x300", title: "Vinculado al programa de estudios" },
-  { id: 4, image: "https://via.placeholder.com/400x300", title: "Desarrollo de habilidades de liderazgo" },
-  { id: 5, image: "https://via.placeholder.com/400x300", title: "Modelo educativo basado en los 4 pilares de la educación de la UNESCO" },
-  { id: 6, image: "https://via.placeholder.com/400x300", title: "Transversal" }
 ];
 
 const ProgramasEscolares = () => {
@@ -125,6 +126,49 @@ const ProgramasEscolares = () => {
         <InfiniteCarrusel
           title="NUESTROS PROGRAMAS INTEGRAN"
           cards={InfiniteCarruselData}
+        />
+
+      <FloatingImages images={
+              [
+                {
+                  src: '/extras/roboto/roboto1.png',
+                  speed: 3,
+                  zIndex: 20,
+                  positionX: '3%',
+                  positionY: '2%',
+                  mobilePositionX: '5%',
+                  mobilePositionY: '10%',
+                },
+                {
+                  src: '/extras/roboto/roboto2.png',
+                  speed: 2,
+                  zIndex: 20,
+                  positionX: '77%',
+                  positionY: '22%',
+                },
+                {
+                  src: '/extras/roboto/roboto2.png',
+                  speed: 2,
+                  zIndex: 20,
+                  positionX: '4%',
+                  positionY: '49%',
+                },
+                {
+                  src: '/extras/roboto/roboto2.png',
+                  speed: 2,
+                  zIndex: 20,
+                  positionX: '75%',
+                  positionY: '65%',
+                },
+                {
+                  src: '/extras/roboto/roboto2.png',
+                  speed: 2,
+                  zIndex: 20,
+                  positionX: '15%',
+                  positionY: '90%',
+                },
+              ]
+            }
         />
 
         <InicioCards

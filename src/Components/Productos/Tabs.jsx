@@ -39,6 +39,10 @@ const Tabs = ({
     setSearchTerm(''); // Reinicia la búsqueda cuando se cambia de pestaña
   }, [activeTab]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
