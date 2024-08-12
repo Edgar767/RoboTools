@@ -11,7 +11,7 @@ const Carrusel = ({ images, title, title2Texts }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Cambia cada 5 segundos
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -26,7 +26,7 @@ const Carrusel = ({ images, title, title2Texts }) => {
       setDisplayedText(updatedText);
 
       if (!isDeleting && updatedText === currentText) {
-        setTimeout(() => setIsDeleting(true), 2000); // Espera 2 segundos antes de borrar
+        setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && updatedText === '') {
         setIsDeleting(false);
         setCurrentTextIndex((prevIndex) => (prevIndex + 1) % title2Texts.length);
@@ -41,8 +41,8 @@ const Carrusel = ({ images, title, title2Texts }) => {
 
   useEffect(() => {
     const cursorInterval = setInterval(() => {
-      setShowCursor((prevState) => !prevState); // Alternar el estado de mostrar/ocultar el cursor
-    }, 500); // Cambia cada 0.5 segundos
+      setShowCursor((prevState) => !prevState);
+    }, 500);
 
     return () => clearInterval(cursorInterval);
   }, []);
@@ -54,7 +54,7 @@ const Carrusel = ({ images, title, title2Texts }) => {
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
         >
-          <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Filtro oscuro */}
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
           <img 
             src={image} 
             alt={`Carrusel ${index + 1}`} 
@@ -63,14 +63,26 @@ const Carrusel = ({ images, title, title2Texts }) => {
           />
         </div>
       ))}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 space-y-4 px-4 md:px-8">
-        <h1 className="text-3xl font-extrabold sm:text-4xl md:text-5xl lg:text-6xl lg:font-extrabold" style={{ position: 'absolute', top: '35%', left: '50%', transform: 'translate(-50%, -50%)' }}>{title}</h1>
-        <div className="text-container relative flex items-center">
-          <h2 className="text-lg font-extrabold animate-typing sm:text-2xl md:text-4xl lg:text-8xl lg:font-extrabold">{displayedText}</h2>
-          <div className={`h-full bg-white w-1 ${showCursor ? 'block' : 'hidden'}`}></div> {/* Barra vertical */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 px-4 md:px-8">
+        {/* Mobile layout */}
+        <div className="sm:hidden text-center flex flex-col items-center justify-center h-full" style={{ marginTop: '-20%' }}>
+          <h1 className="text-3xl font-extrabold mb-2">{title}</h1>
+          <div className="text-container relative flex items-center justify-center">
+            <h2 className="text-5xl font-extrabold animate-typing">{displayedText}</h2>
+            <div className={`h-12 bg-white w-1 ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}></div>
+          </div>
+        </div>
+        
+        {/* Desktop layout */}
+        <div className="hidden sm:block w-full h-full relative">
+          <h1 className="text-4xl font-extrabold md:text-5xl lg:text-6xl lg:font-extrabold absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">{title}</h1>
+          <div className="text-container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center">
+            <h2 className="text-5xl font-extrabold animate-typing md:text-6xl lg:text-8xl lg:font-extrabold">{displayedText}</h2>
+            <div className={`h-12 md:h-16 lg:h-20 bg-white w-1 ml-1 ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}></div>
+          </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[rgb(243,244,246)] to-transparent z-20"></div> {/* Desvanecimiento blanco */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[rgb(243,244,246)] to-transparent z-20"></div>
     </div>
   );
 };
