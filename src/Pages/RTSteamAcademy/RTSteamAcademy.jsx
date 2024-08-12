@@ -1,10 +1,14 @@
+import { useEffect } from 'react';
 import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 
 const RTSteamAcademy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="relative min-h-screen">
-        <FloatingBlocks />
+      <FloatingBlocks />
       <div className="relative z-10">
         <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">LA MEJOR MANERA DE ENSEÑAR ROBOTICA</h4>
         
@@ -30,9 +34,9 @@ const RTSteamAcademy = () => {
           </ul>
         </div>
         
-          <h4 className="title color-variation-1 mt-8 mb-5 text-center text-5xl font-extrabold">¿Que encontraras en</h4>
-          <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">RT STEAM ACADEMY?</h4>
-          <div className=''>
+        <h4 className="title color-variation-1 mt-8 mb-5 text-center text-5xl font-extrabold">¿Que encontraras en</h4>
+        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">RT STEAM ACADEMY?</h4>
+        <div className=''>
           <ul className="steps steps-vertical">
             <li className="step step-primary">Sesiones paso a paso usando la Metodologia de las 5´C y el aprendizaje basado en proyectos (ABP)</li>
             <li className="step step-secondary">Videos, Presentaciones y otras herramientas audiovisuales para contextualizar la clase</li>
