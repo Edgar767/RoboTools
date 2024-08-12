@@ -136,8 +136,6 @@ const ProgramasEscolares = () => {
                   zIndex: 20,
                   positionX: '3%',
                   positionY: '2%',
-                  mobilePositionX: '5%',
-                  mobilePositionY: '10%',
                 },
                 {
                   src: '/extras/roboto/roboto2.png',

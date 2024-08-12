@@ -11,14 +11,19 @@ const FloatingImages = ({ images }) => {
   );
 };
 
-const FloatingImage = ({ src, speed = 1, zIndex = 1 }) => {
+const FloatingImage = ({
+  src,
+  speed = 1,
+  zIndex = 1,
+  positionX = '50%',
+  positionY = '50%',
+}) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotation = useMotionValue(0);
   const shadowWidth = useTransform(y, [20, -20], ['80%', '40%']);
 
-  // Definir la amplitud según el tamaño de la pantalla
-  const amplitude = window.innerWidth < 640 ? 10 : 20;
+  const amplitude = 20;
 
   useAnimationFrame((time) => {
     const xOffset = Math.sin(time / (1000 / speed)) * amplitude;
@@ -30,14 +35,16 @@ const FloatingImage = ({ src, speed = 1, zIndex = 1 }) => {
 
   return (
     <div
-      className="absolute flex items-center justify-center pointer-events-none"
+      className="absolute flex items-center justify-center pointer-events-none hidden sm:block"
       style={{
         zIndex,
+        left: positionX,
+        top: positionY,
       }}
     >
       <motion.img
         src={src}
-        className="relative w-auto h-32 sm:h-64"
+        className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64"
         style={{
           x,
           y,
@@ -54,7 +61,7 @@ const FloatingImage = ({ src, speed = 1, zIndex = 1 }) => {
           zIndex: -1,
           filter: 'blur(8px)',
           x,
-          y: useTransform(y, (value) => value + (window.innerWidth < 640 ? 60 : 120)),
+          y: useTransform(y, (value) => value + 120),
         }}
       />
     </div>
@@ -65,6 +72,8 @@ FloatingImage.propTypes = {
   src: PropTypes.string.isRequired,
   speed: PropTypes.number,
   zIndex: PropTypes.number,
+  positionX: PropTypes.string,
+  positionY: PropTypes.string,
 };
 
 FloatingImages.propTypes = {
