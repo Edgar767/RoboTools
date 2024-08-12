@@ -35,7 +35,7 @@ const FloatingImage = ({
 
   return (
     <div
-      className="absolute flex items-center justify-center pointer-events-none hidden sm:block"
+      className="absolute hidden sm:flex items-center justify-center pointer-events-none"
       style={{
         zIndex,
         left: positionX,
@@ -66,6 +66,7 @@ const FloatingImage = ({
       />
     </div>
   );
+  
 };
 
 FloatingImage.propTypes = {
