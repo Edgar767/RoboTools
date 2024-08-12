@@ -2,8 +2,9 @@ import { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { motion, useAnimation } from "framer-motion";
 
+// Componente VerticalCarrusel
 const VerticalCarrusel = ({ cards, direction }) => {
-  const [cardSize, setCardSize] = useState(400); // Aumentar el tamaño de las tarjetas
+  const [cardSize, setCardSize] = useState(400);
   const carouselRef = useRef(null);
   const controls = useAnimation();
   const [isHovered, setIsHovered] = useState(false);
@@ -14,7 +15,7 @@ const VerticalCarrusel = ({ cards, direction }) => {
       if (carouselRef.current) {
         const firstCard = carouselRef.current.querySelector('.card');
         if (firstCard) {
-          setCardSize(firstCard.offsetHeight); // Usar el alto para establecer el tamaño cuadrado
+          setCardSize(firstCard.offsetHeight);
         }
       }
     };
@@ -30,7 +31,7 @@ const VerticalCarrusel = ({ cards, direction }) => {
     let animationFrame;
     let lastTimestamp;
     const totalHeight = cardSize * cards.length;
-    const duration = 30000; // 30 segundos para una rotación completa
+    const duration = 30000;
 
     const animate = (timestamp) => {
       if (!lastTimestamp) lastTimestamp = timestamp;
@@ -61,11 +62,10 @@ const VerticalCarrusel = ({ cards, direction }) => {
 
   return (
     <div 
-      className="relative overflow-hidden h-[600px] flex justify-center items-center" // Reducir la altura del contenedor
+      className="relative overflow-hidden h-[50vh] md:h-[600px] flex justify-center items-center" 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Fade effect on the top */}
       <div className="absolute top-0 left-0 right-0 h-16 z-10 bg-gradient-to-b from-[rgb(243,244,246)] to-transparent"></div>
 
       <motion.div
@@ -76,7 +76,7 @@ const VerticalCarrusel = ({ cards, direction }) => {
         {cardsState.map((card, index) => (
           <motion.div
             key={`${card.title}-${index}`}
-            className="card w-[400px] h-[400px] md:w-[500px] md:h-[500px] p-2" // Tarjetas cuadradas y más grandes
+            className="card w-[90vw] h-[75vw] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[400px] p-2"
           >
             <a href={card.link} className="group relative flex h-full items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg">
               <div className="absolute inset-0">
@@ -99,7 +99,6 @@ const VerticalCarrusel = ({ cards, direction }) => {
         ))}
       </motion.div>
 
-      {/* Fade effect on the bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-16 z-10 bg-gradient-to-t from-[rgb(243,244,246)] to-transparent"></div>
     </div>
   );
@@ -118,6 +117,7 @@ VerticalCarrusel.propTypes = {
   direction: PropTypes.oneOf(["up", "down"]).isRequired,
 };
 
+// Componente DobleCarrusel
 const DobleCarrusel = ({ leftTitle, leftDescription, leftCards, rightTitle, rightDescription, rightCards }) => {
   return (
     <div className="py-12 sm:py-16 lg:py-24">
@@ -129,11 +129,11 @@ const DobleCarrusel = ({ leftTitle, leftDescription, leftCards, rightTitle, righ
           )}
         </div>
 
-        <div className="flex justify-center space-x-4">
-          <div className="w-1/2 max-w-lg">
+        <div className="flex flex-col lg:flex-row justify-center space-y-0 lg:space-y-0 lg:space-x-4">
+          <div className="w-full lg:w-1/2 max-w-lg mx-auto lg:mx-0">
             <VerticalCarrusel cards={leftCards} direction="down" />
           </div>
-          <div className="w-1/2 max-w-lg">
+          <div className="w-full lg:w-1/2 max-w-lg mx-auto lg:mx-0">
             <VerticalCarrusel cards={rightCards} direction="up" />
           </div>
         </div>
