@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { motion, useAnimation } from "framer-motion";
 
-const Infinito = ({ title, description, cards }) => {
+const InfiniteCarrusel2 = ({ title, description, cards }) => {
   const [containerWidth, setContainerWidth] = useState(0);
   const carouselRef = useRef(null);
   const containerRef = useRef(null);
@@ -114,7 +114,7 @@ const Infinito = ({ title, description, cards }) => {
   );
 };
 
-Infinito.propTypes = {
+InfiniteCarrusel2.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
   cards: PropTypes.arrayOf(
@@ -128,4 +128,4 @@ Infinito.propTypes = {
   ).isRequired,
 };
 
-export default Infinito;
+export default InfiniteCarrusel2;

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import FloatingBlocks from '../Components/Animation/FloatingBlocks';
-import Infinito from '../Components/Infinito';
+import InfiniteCarrusel2 from '../Components/InfiniteCarrusel2';
 import Testimonials from '../Components/Testimonials';
 
-const InfinitoData = [
+const InfiniteCarrusel2Data = [
   {
     title: "Estatal Emprendedores Aguascalientes 2007",
     desc: "1er Lugar Premio",
@@ -316,9 +316,9 @@ function Nosotros() {
     </div>
 
     {/*RECONOCIMIENTOS Y PREMIACIONES*/}
-    <Infinito
+    <InfiniteCarrusel2
       title="Reconocimientos y Premiaciones"
-      cards={InfinitoData}
+      cards={InfiniteCarrusel2Data}
     />
 
     {/*CARRUSEL DE OPINIONES*/}
