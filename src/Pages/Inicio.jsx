@@ -1,12 +1,10 @@
+import { useEffect } from 'react';
 import Carrusel from '../Components/Carrusel';
 import InicioCards from '../Components/InicioCards';
-import InfiniteCarrusel from '../Components/InfiniteCarrusel';
-import Testimonials from '../Components/Testimonials';
-import Infinito from '../Components/Infinito';
 import DobleCarrusel from '../Components/DobleCarrusel';
-import Prices from '../Components/Prices';
 import { Link } from 'react-router-dom';
-import Floating from '../Components/Animation/Floating';
+import FloatingBlocks from '../Components/Animation/FloatingBlocks';
+import FloatingImages from '../Components/Animation/FloatingImages';
 
 const InicioCardsData = [
   {
@@ -17,240 +15,144 @@ const InicioCardsData = [
     link: "/programasescolares",
   },
   {
-    title: "CURSOS ROBOTOOLS",
+    title: "ROBOTOOLS CENTRO STEAM",
     desc: "DALE UN VISTAZO",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image22.jpeg',
     alt: "Photo by Fakurian Design",
     link: "/cursosrobotools",
   },
   {
-    title: "RT STEAM ACADEMY",
+    title: "PRODUCTOS",
     desc: "DALE UN VISTAZO",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image33.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/rtsteamacademy",
+    link: "/productos",
   },
 ];
 
-const InfiniteCarruselData = [
-  { id: 1, image: "https://via.placeholder.com/400x300", title: "a" },
-  { id: 2, image: "https://via.placeholder.com/400x300", title: "b" },
-  { id: 3, image: "https://via.placeholder.com/400x300", title: "c" },
-  { id: 4, image: "https://via.placeholder.com/400x300", title: "d" },
-  { id: 5, image: "https://via.placeholder.com/400x300", title: "e" },
-  { id: 6, image: "https://via.placeholder.com/400x300", title: "f" },
-];
-
-const testimonialsData = [
-  {
-    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
-    image: 'https://images.unsplash.com/photo-1567515004624-219c11d31f2e?auto=format&q=75&fit=crop&w=112',
-    name: 'John McCulling',
-    title: 'CEO / Datadrift',
-  },
-  {
-    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
-    image: 'https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=112',
-    name: 'Kate Berg',
-    title: 'CFO / Dashdash',
-  },
-  {
-    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
-    image: 'https://images.unsplash.com/photo-1567515004624-219c11d31f2e?auto=format&q=75&fit=crop&w=112',
-    name: 'John McCulling 2',
-    title: 'CEO / Datadrift',
-  },
-  {
-    quote: '“This is a section of some simple filler text, also known as placeholder text.”',
-    image: 'https://images.unsplash.com/photo-1532073150508-0c1df022bdd1?auto=format&q=75&fit=crop&w=112',
-    name: 'Kate Berg 2',
-    title: 'CFO / Dashdash',
-  },
-  // Agrega más testimonios aquí
-];
-
-const InfinitoData =[
-  {
-    title: "Estatal Emprendedores Aguascalientes 2007",
-    desc: "1er Lugar Premio",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "World Robot Olympiad 2013.",
-    desc: "2do. Lugar categoría primaria en la competencia regional de la",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "World Robot Olympiad 2013.",
-    desc: "3er. Lugar en el Nacional categoría secundaria de",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "World Robot Olympiad, Regional Querétaro. Junio 2014.",
-    desc: "1er. Lugar en categoría Secundaria en competencia",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "World Robot Olympiad Nacional.",
-    desc: "5 Equipos: 2 de Secundaria y 3 de Primaria consiguen su pase a",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "World Robot Olympiad, regional Guadalajara 2015.",
-    desc: "2do. Lugar categoría Primario en competencia",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "First LEGO League en Estado de México 2013.",
-    desc: "Subcampeón en competencia",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "Gracious Professionalism en competencia First LEGO League en Estado de México 2013.",
-    desc: "Reconocimiento",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "Gracious Professionalism en competencia First LEGO League en Monterrey 2014.",
-    desc: "Reconocimiento",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "First LEGO League en Monterrey 2014.",
-    desc: "Reconocimiento a la mejor programación en competencia",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-  {
-    title: "World Robot Olympiad, Regional Monterrey 2016.",
-    desc: "Segundo lugar en categoría primaria en competencia",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
-    alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
-  },
-];
-
-const leftCards =[
+const leftCards = [
   {
     title: "1",
     desc: "1",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
   {
     title: "2",
     desc: "2",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image22.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
   {
     title: "3",
     desc: "3",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image33.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
   {
     title: "4",
     desc: "4",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
 ];
 
-const rightCards =[
+const rightCards = [
   {
     title: "1",
     desc: "1",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
   {
     title: "2",
     desc: "2",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image22.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
   {
     title: "3",
     desc: "3",
-    image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
+    image: '/img/Imagenes_Inicio/Inicio_Cards/image33.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
   {
     title: "4",
     desc: "4",
     image: '/img/Imagenes_Inicio/Inicio_Cards/image11.jpeg',
     alt: "Photo by Fakurian Design",
-    link: "/programasescolares",
   },
 ];
 
-const images = ['/img/Imagenes_Inicio/Carrusel_Inicio/carrusel1.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel2.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel3.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel4.jpeg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel5.jpeg'];
+const images = ['/img/Imagenes_Inicio/Carrusel_Inicio/carrusel1.jpg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel2.jpg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel3.jpg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel4.jpg', '/img/Imagenes_Inicio/Carrusel_Inicio/carrusel5.jpg'];
 const title2Texts = ['MENTES', 'CREATIVIDAD', 'DIVERSION'];
 
 const Inicio = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
+  <>
     <div className="relative min-h-screen">
-      <Floating />
+      <FloatingBlocks />
       <div className="relative z-10">
         {/* Carrusel */}
         <div>
           <Carrusel images={images} title='DESARROLLANDO' title2Texts={title2Texts} />
         </div>
 
-        {/* INICIO CURSOS */}
+        {/* SOLUCIONES EDUCATIVAS */}
+        <FloatingImages images={
+              [
+                {
+                  src: '/extras/roboto/roboto1.png',
+                  speed: 3,
+                  zIndex: 20,
+                  positionX: '8%',
+                  positionY: '29%',
+                },
+                {
+                  src: '/extras/roboto/roboto2.png',
+                  speed: 2,
+                  zIndex: 20,
+                  positionX: '75%',
+                  positionY: '50%',
+                },
+                /*DOBLE CARRUSEL (GALERIA)*/
+                {
+                  src: '/extras/roboto/roboto1.png',
+                  speed: 3,
+                  zIndex: 20,
+                  positionX: '5%',
+                  positionY: '78%',
+                },
+                {
+                  src: '/extras/roboto/roboto2.png',
+                  speed: 2,
+                  zIndex: 20,
+                  positionX: '70%',
+                  positionY: '90%',
+                },
+              ]
+            }
+        />
+
         <InicioCards
-          title="Nuestros Cursos"
+          title="Soluciones Educativas"
           description="This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated."
           cards={InicioCardsData}
         />
-        {/* FIN CURSOS */}
-
-        <Infinito
-          title="RECONOCIMIENTOS Y PREMIACIONES"
-          cards={InfinitoData}
-        />
-
-        {/*CARRUSEL DE OPINIONES*/}
-        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">LO QUE DICEN NUESTROS ALUMNOS</h4>
-        <Testimonials testimonials={testimonialsData} />
+        {/* FIN SOLUCIONES EDUCATIVAS */}
 
         <DobleCarrusel 
-          leftTitle="NUESTROS SERVICIOS (GALERIA)"
+          leftTitle="Nuestros Servicios (Galeria)"
           leftDescription=""
           leftCards={leftCards}
           rightCards={rightCards}
         />
 
-        <Prices />
-
-        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">SIGUENOS EN NUESTRAS REDES SOCIALES</h4>
+        <h4 className="title color-variation-1 mt-8 mb-20 text-center text-5xl font-extrabold">Nuestras Redes Sociales</h4>
 
         <div className="flex items-center justify-center">
           <div className="flex items-center mr-5">
@@ -272,11 +174,9 @@ const Inicio = () => {
           </div>
         </div>
 
-        <InfiniteCarrusel
-          cards={InfiniteCarruselData}
-        />
       </div>
     </div>
+  </>
   );
 };
 
