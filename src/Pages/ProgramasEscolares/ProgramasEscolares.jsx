@@ -7,12 +7,12 @@ import FloatingBlocks from '../../Components/Animation/FloatingBlocks';
 import FloatingImages from '../../Components/Animation/FloatingImages';
 
 const InfiniteCarruselData = [
-  { id: 1, image: "https://via.placeholder.com/400x300", title: " " },
-  { id: 2, image: "https://via.placeholder.com/400x300", title: "Aprendizaje divertido" },
-  { id: 3, image: "https://via.placeholder.com/400x300", title: "Vinculado al programa de estudios" },
-  { id: 4, image: "https://via.placeholder.com/400x300", title: "Desarrollo de habilidades de liderazgo" },
-  { id: 5, image: "https://via.placeholder.com/400x300", title: "Modelo educativo basado en los 4 pilares de la educación de la UNESCO" },
-  { id: 6, image: "https://via.placeholder.com/400x300", title: "Transversal" }
+  { id: 1, image: "https://placehold.co/400x300", title: "Hola" },
+  { id: 2, image: "https://placehold.co/400x300", title: "Aprendizaje divertido" },
+  { id: 3, image: "https://placehold.co/400x300", title: "Vinculado al programa de estudios" },
+  { id: 4, image: "https://placehold.co/400x300", title: "Desarrollo de habilidades de liderazgo" },
+  { id: 5, image: "https://placehold.co/400x300", title: "Modelo educativo basado en los 4 pilares de la educación de la UNESCO" },
+  { id: 6, image: "https://placehold.co/400x300", title: "Transversal" }
 ];
 
 const CardsData = [
